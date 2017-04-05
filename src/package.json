@@ -1,0 +1,6 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "author": "nasum",
+  "main": "main/app.js"
+}
