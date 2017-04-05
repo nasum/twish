@@ -2,12 +2,11 @@
   "name": "application",
   "version": "1.0.0",
   "author": "nasum",
-  "main": "build/main/app.js",
   "scripts": {
     "build": "webpack --color",
     "build:watch": "webpack --watch --color",
     "build:production:mac": "electron-packager ./build production --out=pack --platform=darwin --arch=x64 --electron-version=1.6.2 --overwrite",
-    "electron": "electron ./build/main/app.js"
+    "electron": "electron ./build/browser/app.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
