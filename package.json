@@ -26,6 +26,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.2.0",
     "eslint-plugin-vue": "^2.0.1",
+    "i18n-webpack-plugin": "^0.3.0",
     "vue-loader": "^11.3.4",
     "vue-template-compiler": "^2.2.6",
     "webpack": "^2.3.3"
