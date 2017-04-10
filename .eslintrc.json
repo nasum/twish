@@ -39,6 +39,12 @@
       {
         "properties": "never"
       }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": ["log"]
+      }
     ]
   },
   "globals": {

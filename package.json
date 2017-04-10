@@ -32,7 +32,7 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
-    "twitter": "^1.7.0",
+    "oauth": "^0.9.15",
     "vue": "^2.2.6"
   }
 }

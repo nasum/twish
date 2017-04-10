@@ -1,11 +1,26 @@
-const electron = require('electron');
+import { OAuth } from 'oauth';
+import electron from 'electron';
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const shell = electron.shell;
+const ipcMain = electron.ipcMain;
 
-const path = require('path');
-const url = require('url');
+import path from 'path';
+import url from 'url';
 
 let mainWindow;
+let oauthToken;
+let oauthTokenSecret;
+
+const oauth = new OAuth(
+  'https://api.twitter.com/oauth/request_token',
+  'https://api.twitter.com/oauth/access_token',
+  process.env.TWITTER_CONSUMER_KEY,
+  process.env.TWITTER_CONSUMER_SECRET,
+  '1.0A',
+  'oob',
+  'HMAC-SHA1'
+);
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -24,6 +39,15 @@ function createWindow () {
   });
 
   mainWindow.show();
+  authentication(mainWindow);
+}
+
+function authentication (win) {
+  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
+    if (error) return;
+    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
+    shell.openExternal(authUrl);
+  });
 }
 
 app.on('ready', createWindow);
@@ -38,4 +62,13 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipcMain.once('SEND_PIN', (e, args) => {
+  const oauthVerifier = args.pin;
+  oauth.getOAuthAccessToken(oauthToken, oauthTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
+    if (error) {
+      console.log(error);
+    }
+  });
 });
