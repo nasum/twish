@@ -26,7 +26,13 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.2.0",
     "eslint-plugin-vue": "^2.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "i18n-webpack-plugin": "^0.3.0",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
     "vue-loader": "^11.3.4",
     "vue-template-compiler": "^2.2.6",
     "webpack": "^2.3.3"
