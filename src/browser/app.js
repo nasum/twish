@@ -40,15 +40,6 @@ function createWindow () {
   });
 
   mainWindow.show();
-  authentication(mainWindow);
-}
-
-function authentication (win) {
-  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
-    if (error) return;
-    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
-    shell.openExternal(authUrl);
-  });
 }
 
 app.on('ready', createWindow);
@@ -71,5 +62,13 @@ ipcMain.once('SEND_PIN', (e, args) => {
     if (error) {
       console.log(error);
     }
+  });
+});
+
+ipcMain.once('AUTH', (e, args) => {
+  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
+    if (error) return;
+    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
+    shell.openExternal(authUrl);
   });
 });

@@ -4,9 +4,52 @@
   <link rel="stylesheet" type="text/css" href="css/photon.css" />
 </head>
 <body>
-  <header class="toolbar toolbar-header">
-    <h1 class="title">Header</h1>
-  </header>
+  <div class="window">
+    <header class="toolbar toolbar-header">
+      <h1 class="title"></h1>
+      <div class="toolbar-actions">
+      </div>
+    </header>
+    <div class="window-content">
+      <div class="pane-group">
+        <div class="pane-sm sidebar">
+          <nav class="nav-group">
+            <h5 class="nav-group-title">Favorites</h5>
+          </nav>
+        </div>
+        <div class="pane">
+          <ul class="list-group">
+            <li class="list-group-header">
+              <h5>
+                Home
+              </h5>
+              <input class="form-control" type="text" placeholder="Search for someone">
+            </li>
+          </ul>
+        </div>
+        <div class="pane">
+          <ul class="list-group">
+            <li class="list-group-header">
+              <h5>
+                Notification
+              </h5>
+              <input class="form-control" type="text" placeholder="Search for someone">
+            </li>
+          </ul>
+        </div>
+        <div class="pane">
+          <ul class="list-group">
+            <li class="list-group-header">
+              <h5>
+                Messages
+              </h5>
+              <input class="form-control" type="text" placeholder="Search for someone">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="./renderer/index.js"></script>
 </body>
 </html>
