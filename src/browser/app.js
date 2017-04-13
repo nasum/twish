@@ -4,6 +4,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const shell = electron.shell;
 const ipcMain = electron.ipcMain;
+const dialog = electron.dialog;
 
 import path from 'path';
 import url from 'url';
@@ -65,7 +66,7 @@ ipcMain.once('SEND_PIN', (e, args) => {
   });
 });
 
-ipcMain.once('AUTH', (e, args) => {
+ipcMain.on('AUTH', (e, args) => {
   oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
     if (error) return;
     const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
