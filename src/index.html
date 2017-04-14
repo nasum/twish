@@ -4,67 +4,9 @@
   <link rel="stylesheet" type="text/css" href="css/photon.css" />
 </head>
 <body>
-  <div class="window">
-    <header class="toolbar toolbar-header">
-      <h1 class="title"></h1>
-      <div class="tab-group">
-        <div class="tab-item active">
-          <span class="icon icon-cancel icon-close-tab"></span>
-          Home
-        </div>
-        <div class="tab-item tab-item-fixed">
-          <span class="icon icon-plus"></span>
-        </div>
-      </div>
-    </header>
-    <div class="window-content">
-      <div class="pane-group">
-        <div class="pane-sm sidebar">
-          <nav class="nav-group">
-            <h5 class="nav-group-title">Favorites</h5>
-            <button class="btn btn-large btn-primary" onclick="document.getElementById('dialog').show();">Primary</button>
-          </nav>
-        </div>
-        <div class="pane">
-          <ul class="list-group">
-            <li class="list-group-header">
-              <h5>
-                Home
-              </h5>
-              <input class="form-control" type="text" placeholder="Search for someone">
-            </li>
-          </ul>
-        </div>
-        <div class="pane">
-          <ul class="list-group">
-            <li class="list-group-header">
-              <h5>
-                Notification
-              </h5>
-              <input class="form-control" type="text" placeholder="Search for someone">
-            </li>
-          </ul>
-        </div>
-        <div class="pane">
-          <ul class="list-group">
-            <li class="list-group-header">
-              <h5>
-                Messages
-              </h5>
-              <input class="form-control" type="text" placeholder="Search for someone">
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div id="app">
+    <app-root></app-root>
   </div>
-  <dialog id="dialog">
-    <form method="dialog">
-        <input id="input" placeholder="PIN"/><br>
-        <button type="submit" value="cancel">Cancel</button>
-        <button type="submit" value="ok">Ok</button>
-    </form>
-</dialog>
   <script src="./renderer/index.js"></script>
 </body>
 </html>

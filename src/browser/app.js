@@ -4,7 +4,6 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const shell = electron.shell;
 const ipcMain = electron.ipcMain;
-const dialog = electron.dialog;
 
 import path from 'path';
 import url from 'url';

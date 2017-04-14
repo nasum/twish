@@ -22,7 +22,10 @@ module.exports = {
   target: "node",
   devtool: 'source-map',
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.js', '.css', '.scss']
+    extensions: ['.webpack.js', '.web.js', '.js', '.css', '.scss', '.vue'],
+    alias: {
+      'vue': 'vue/dist/vue',
+    }
   },
   module: {
     rules: [
