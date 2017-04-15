@@ -49,8 +49,14 @@ module.exports = {
               use: 'css-loader',
               fallback: 'vue-style-loader'
             }),
-            scss: 'vue-style-loader!css-loader!sass-loader',
-            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+            scss: ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader',
+              fallback: 'vue-style-loader'
+            }),
+            sass: ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader?indentedSyntax',
+              fallback: 'vue-style-loader'
+            })
           }
         }
       }, {
