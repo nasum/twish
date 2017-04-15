@@ -3,54 +3,13 @@
     <div class="window">
       <header class="toolbar toolbar-header">
         <h1 class="title"></h1>
-        <div class="tab-group">
-          <div class="tab-item active">
-            <span class="icon icon-cancel icon-close-tab"></span>
-            Home
-          </div>
-          <div class="tab-item tab-item-fixed">
-            <span class="icon icon-plus"></span>
-          </div>
-        </div>
       </header>
       <div class="window-content">
         <div class="pane-group">
-          <div class="pane-sm sidebar">
-            <nav class="nav-group">
-              <h5 class="nav-group-title">Favorites</h5>
-              <button class="btn btn-large btn-primary" onclick="document.getElementsByClassName('pin_dialog')[0].show();">Primary</button>
-            </nav>
-          </div>
-          <div class="pane">
-            <ul class="list-group">
-              <li class="list-group-header">
-                <h5>
-                  Home
-                </h5>
-                <input class="form-control" type="text" placeholder="Search for someone">
-              </li>
-            </ul>
-          </div>
-          <div class="pane">
-            <ul class="list-group">
-              <li class="list-group-header">
-                <h5>
-                  Notification
-                </h5>
-                <input class="form-control" type="text" placeholder="Search for someone">
-              </li>
-            </ul>
-          </div>
-          <div class="pane">
-            <ul class="list-group">
-              <li class="list-group-header">
-                <h5>
-                  Messages
-                </h5>
-                <input class="form-control" type="text" placeholder="Search for someone">
-              </li>
-            </ul>
-          </div>
+          <side-bar></side-bar>
+          <home-timeline></home-timeline>
+          <notification-timeline></notification-timeline>
+          <message-timeline></message-timeline>
         </div>
       </div>
     </div>
@@ -59,11 +18,19 @@
 </template>
 
 <script>
-import PinFormDialog from './PinFormDialog'
+import PinFormDialog        from './PinFormDialog';
+import SideBar              from './SideBar';
+import HomeTimeline         from './HomeTimeline';
+import NotificationTimeline from './NotificationTimeline';
+import MessageTimeline      from './MessageTimeline';
 
 export default {
   components: {
-    PinFormDialog: PinFormDialog
+    PinFormDialog:        PinFormDialog,
+    SideBar:              SideBar,
+    HomeTimeline:         HomeTimeline,
+    NotificationTimeline: NotificationTimeline,
+    MessageTimeline:      MessageTimeline
   }
 }
 </script>
