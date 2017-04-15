@@ -34,3 +34,5 @@ export default {
   }
 }
 </script>
+
+<style src="css/photon.css"></style>

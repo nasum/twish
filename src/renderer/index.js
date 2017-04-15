@@ -1,5 +1,3 @@
-require('../css/photon.css');
-
 import Vue from 'vue';
 import AppRoot from './components/AppRoot';
 

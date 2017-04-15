@@ -25,7 +25,8 @@ module.exports = {
     extensions: ['.webpack.js', '.web.js', '.js', '.css', '.scss', '.vue'],
     alias: {
       'vue': 'vue/dist/vue',
-    }
+    },
+    modules: [path.resolve(__dirname, "src"), "node_modules"]
   },
   module: {
     rules: [
@@ -44,6 +45,10 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
+            css: ExtractTextPlugin.extract({
+              use: 'css-loader',
+              fallback: 'vue-style-loader'
+            }),
             scss: 'vue-style-loader!css-loader!sass-loader',
             sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
           }
@@ -84,6 +89,6 @@ module.exports = {
       }
     ]),
     new I18nPlugin(languages["jp"]),
-    new ExtractTextPlugin("css/photon.css"),
+    new ExtractTextPlugin("css/style.css"),
   ]
 }
