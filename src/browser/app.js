@@ -1,5 +1,6 @@
 import { OAuth } from 'oauth';
 import electron from 'electron';
+import storage from 'electron-json-storage';
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const shell = electron.shell;
@@ -7,10 +8,6 @@ const ipcMain = electron.ipcMain;
 
 import path from 'path';
 import url from 'url';
-
-let mainWindow;
-let oauthToken;
-let oauthTokenSecret;
 
 const oauth = new OAuth(
   'https://api.twitter.com/oauth/request_token',
@@ -21,6 +18,8 @@ const oauth = new OAuth(
   'oob',
   'HMAC-SHA1'
 );
+
+let mainWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -58,19 +57,36 @@ app.on('activate', function () {
 
 ipcMain.once('SEND_PIN', (e, args) => {
   const oauthVerifier = args.pin;
-  oauth.getOAuthAccessToken(oauthToken, oauthTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
+  storage.get('oauthInfo', function (error, data) {
     if (error) {
       console.log(error);
     }
+    console.log(data);
+    const oauthToken = data.oauthToken;
+    const oauthTokenSecret = data.oauthTokenSecret;
+    oauth.getOAuthAccessToken(oauthToken, oauthTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
+      if (error) {
+        console.log(error);
+      } else {
+        storage.set('oauthInfo', {
+          oauthToken: oauthToken,
+          oauthTokenSecret: oauthTokenSecret,
+          accessToken: accessToken,
+          accessTokenSecret: accessTokenSecret
+        });
+      }
+    });
   });
 });
 
 ipcMain.on('AUTH', (e, args) => {
-  oauth.getOAuthRequestToken((error, token, tokenSecret, results) => {
+  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
     if (error) return;
-    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${token}`;
-    oauthToken = token;
-    oauthTokenSecret = tokenSecret;
+    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
+    storage.set('oauthInfo', {
+      oauthToken: oauthToken,
+      oauthTokenSecret: oauthTokenSecret
+    });
     shell.openExternal(authUrl);
   });
 });

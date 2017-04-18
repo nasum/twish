@@ -38,6 +38,7 @@
     "webpack": "^2.4.1"
   },
   "dependencies": {
+    "electron-json-storage": "^3.0.5",
     "oauth": "^0.9.15",
     "vue": "^2.2.6",
     "vue-router": "^2.4.0",
