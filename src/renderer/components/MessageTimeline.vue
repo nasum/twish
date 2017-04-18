@@ -13,6 +13,13 @@
 
 <script>
 export default {
-  
+
 }
 </script>
+
+<style lang="scss" scoped>
+.pane {
+  width: 350px;
+  height: 100%;
+}
+</style>
