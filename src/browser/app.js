@@ -66,9 +66,11 @@ ipcMain.once('SEND_PIN', (e, args) => {
 });
 
 ipcMain.on('AUTH', (e, args) => {
-  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
+  oauth.getOAuthRequestToken((error, token, tokenSecret, results) => {
     if (error) return;
-    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
+    const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${token}`;
+    oauthToken = token;
+    oauthTokenSecret = tokenSecret;
     shell.openExternal(authUrl);
   });
 });

@@ -12,11 +12,11 @@
             <label>
               PIN
             </label>
-            <input type="text" class="form-control" placeholder="ENTER PIN">
+            <input type="text" class="form-control" placeholder="ENTER PIN" v-model="pin">
           </div>
           <div class="form-actions">
             <button type="submit" class="btn btn-form btn-default" @click="showPin">Show PIN</button>
-            <button type="submit" class="btn btn-form btn-primary">OK</button>
+            <button type="submit" class="btn btn-form btn-primary" @click="enterPin">OK</button>
           </div>
         </form>
       </div>
@@ -28,16 +28,21 @@
 
 <script>
 import { ipcRenderer } from 'electron';
-import PinFormDialog from './PinFormDialog';
 
 export default {
-  methods: {
-    showPin: () => {
-      ipcRenderer.send('AUTH');
+  data(){
+    return {
+      pin: ""
     }
   },
-  components: {
-    PinFormDialog: PinFormDialog
+  methods: {
+    showPin: function(){
+      ipcRenderer.send('AUTH');
+    },
+    enterPin: function(){
+      ipcRenderer.send('SEND_PIN', { pin: this.$data.pin } )
+      this.$router.push('app');
+    }
   }
 }
 </script>
