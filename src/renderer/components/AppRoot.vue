@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="window">
-      <header class="toolbar toolbar-header">
+      <header class="toolbar toolbar-header" style="-webkit-app-region: drag;">
         <h1 class="title"></h1>
       </header>
       <app-main></app-main>
