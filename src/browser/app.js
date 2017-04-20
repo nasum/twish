@@ -57,27 +57,34 @@ app.on('activate', function () {
 
 ipcMain.once('SEND_PIN', (e, args) => {
   const oauthVerifier = args.pin;
-  storage.get('oauthInfo', function (error, data) {
-    if (error) {
-      console.log(error);
-    }
-    console.log(data);
-    const oauthToken = data.oauthToken;
-    const oauthTokenSecret = data.oauthTokenSecret;
-    oauth.getOAuthAccessToken(oauthToken, oauthTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
-      if (error) {
-        console.log(error);
-      } else {
-        storage.set('oauthInfo', {
-          oauthToken: oauthToken,
-          oauthTokenSecret: oauthTokenSecret,
-          accessToken: accessToken,
-          accessTokenSecret: accessTokenSecret
-        });
-      }
-    });
-  });
+  storage.get('oauthInfo', sendPinCallback.bind({ oauthVerifier: oauthVerifier }));
 });
+
+function sendPinCallback (error, data) {
+  if (error) {
+    console.log(error);
+  }
+  console.log(data);
+  console.log(this);
+  const oauthToken = data.oauthToken;
+  const oauthTokenSecret = data.oauthTokenSecret;
+  oauth.getOAuthAccessToken(oauthToken, oauthTokenSecret, this.oauthVerifier, saveOAuth.bind({ data: data }));
+}
+
+function saveOAuth (error, accessToken, accessTokenSecret) {
+  if (error) {
+    console.log(error);
+  } else {
+    const oauthToken = this.data.oauthToken;
+    const oauthTokenSecret = this.data.oauthTokenSecret;
+    storage.set('oauthInfo', {
+      oauthToken: oauthToken,
+      oauthTokenSecret: oauthTokenSecret,
+      accessToken: accessToken,
+      accessTokenSecret: accessTokenSecret
+    });
+  }
+}
 
 ipcMain.on('AUTH', (e, args) => {
   oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
