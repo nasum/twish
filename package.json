@@ -40,6 +40,7 @@
   "dependencies": {
     "electron-json-storage": "^3.0.5",
     "oauth": "^0.9.15",
+    "twitter": "^1.7.0",
     "vue": "^2.2.6",
     "vue-router": "^2.4.0",
     "vuex": "^2.3.0"
