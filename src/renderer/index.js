@@ -1,11 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 import Welcome from './components/Welcome';
 import AppRoot from './components/AppRoot';
+import store from './store';
 
 document.title = __('title');
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 const routes = [
   { path: '/', component: Welcome },
@@ -13,9 +16,11 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  store
 });
 
 new Vue({
-  router
+  router,
+  store
 }).$mount('#app');

@@ -28,7 +28,6 @@
 
 <script>
 import storage from 'electron-json-storage';
-import Twitter from 'twitter';
 
 import { ipcRenderer } from 'electron';
 
@@ -50,13 +49,6 @@ export default {
   beforeCreate() {
     storage.get('oauthInfo', (error, data) => {
       if (checkOAuth(data)){
-        let client = new Twitter({
-          consumer_key: process.env.TWITTER_CONSUMER_KEY,
-          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-          access_token_key: data.accessToken,
-          access_token_secret: data.accessTokenSecret
-        });
-
         this.$router.push('app');
       } else {
         return
