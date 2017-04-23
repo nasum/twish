@@ -3,7 +3,9 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import Welcome from './components/Welcome';
 import AppRoot from './components/AppRoot';
-import store from './store';
+
+import actions from './actions';
+import modules from './modules';
 
 document.title = __('title');
 
@@ -14,10 +16,14 @@ const routes = [
   { path: '/', component: Welcome },
   { path: '/app', component: AppRoot }
 ];
+console.log(actions);
+const store = new Vuex.Store({
+  actions,
+  modules
+});
 
 const router = new VueRouter({
-  routes,
-  store
+  routes
 });
 
 new Vue({

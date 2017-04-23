@@ -17,6 +17,9 @@ import Tweet from './Tweet';
 export default {
   components: {
     Tweet: Tweet
+  },
+  created () {
+    this.$store.dispatch('getHomeTimeline')
   }
 }
 </script>
