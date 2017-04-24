@@ -25,6 +25,12 @@ function execute (func, context) {
 }
 
 function _getHomeTimeline (client, context) {
+  client.get('statuses/home_timeline', {}, function(error, tweets, response) {
+    if (!error) {
+      context.commit('getHomeTimeline', tweets);
+    }
+  });
+
   const stream = client.stream('user');
   stream.on('data', (tweet) => {
     context.commit('addTweet', tweet);

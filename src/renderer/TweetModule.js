@@ -3,8 +3,13 @@ const state = {
 };
 
 const mutations = {
-  addTweet (state, tweets) {
-    state.tweets.unshift(tweets);
+  getHomeTimeline (state, tweets) {
+    tweets.forEach((tweet) => {
+      state.tweets.unshift(tweet);
+    });
+  },
+  addTweet (state, tweet) {
+    state.tweets.unshift(tweet);
   }
 };
 
