@@ -21,7 +21,7 @@ export default {
     Tweet: Tweet
   },
   created () {
-    this.$store.dispatch('getHomeTimeline')
+    this.$store.dispatch('initHomeTimeline')
   }
 }
 </script>

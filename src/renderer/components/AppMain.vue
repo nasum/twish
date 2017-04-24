@@ -5,7 +5,7 @@
       <div class="timeline-area">
         <div class="timeline-wrap">
           <home-timeline></home-timeline>
-          <notification-timeline></notification-timeline>
+          <mention-timeline></mention-timeline>
           <message-timeline></message-timeline>
         </div>
       </div>
@@ -16,17 +16,17 @@
 <script>
 import storage from 'electron-json-storage';
 
-import SideBar              from './SideBar';
-import HomeTimeline         from './HomeTimeline';
-import NotificationTimeline from './NotificationTimeline';
-import MessageTimeline      from './MessageTimeline';
+import SideBar         from './SideBar';
+import HomeTimeline    from './HomeTimeline';
+import MentionTimeline from './MentionTimeline';
+import MessageTimeline from './MessageTimeline';
 
 export default {
   components: {
-    SideBar:              SideBar,
-    HomeTimeline:         HomeTimeline,
-    NotificationTimeline: NotificationTimeline,
-    MessageTimeline:      MessageTimeline
+    SideBar:         SideBar,
+    HomeTimeline:    HomeTimeline,
+    MentionTimeline: MentionTimeline,
+    MessageTimeline: MessageTimeline
   }
 }
 </script>

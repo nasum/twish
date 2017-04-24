@@ -24,7 +24,7 @@ function execute (func, context) {
   return client;
 }
 
-function _getHomeTimeline (client, context) {
+function _initHomeTimeline (client, context) {
   client.get('statuses/home_timeline', {}, function (error, tweets, response) {
     if (!error) {
       context.commit('getHomeTimeline', tweets);
@@ -37,9 +37,20 @@ function _getHomeTimeline (client, context) {
   });
 }
 
+function _initMentionTimeline (client, context) {
+  client.get('statuses/mentions_timeline', {}, function (error, tweets, response) {
+    if (!error) {
+      context.commit('getMentionTimeline', tweets);
+    }
+  });
+}
+
 export default {
-  getHomeTimeline (context) {
-    execute(_getHomeTimeline, context);
+  initHomeTimeline (context) {
+    execute(_initHomeTimeline, context);
+  },
+  initMentionTimeline (context) {
+    execute(_initMentionTimeline, context);
   },
   showTweetDialog (context) {
     context.commit('showTweetDialog', context);
