@@ -5,19 +5,19 @@
         <h1 class="title"></h1>
       </header>
       <app-main></app-main>
+      <tweet-dialog></tweet-dialog>
     </div>
-    <pin-form-dialog></pin-form-dialog>
   </div>
 </template>
 
 <script>
-import AppMain       from './AppMain.vue';
-import PinFormDialog from './PinFormDialog';
+import AppMain     from './AppMain.vue';
+import TweetDialog from './TweetDialog';
 
 export default {
   components: {
-    AppMain:       AppMain,
-    PinFormDialog: PinFormDialog
+    AppMain:     AppMain,
+    TweetDialog: TweetDialog
   }
 }
 </script>

@@ -5,7 +5,8 @@ import Welcome from './components/Welcome';
 import AppRoot from './components/AppRoot';
 
 import actions from './actions';
-import TweetModule from './TweetModule';
+import Tweet from './modules/Tweet';
+import TweetDialog from './modules/TweetDialog';
 
 document.title = __('title');
 
@@ -20,7 +21,8 @@ const routes = [
 const store = new Vuex.Store({
   actions,
   modules: {
-    TweetModule: TweetModule
+    Tweet: Tweet,
+    TweetDialog: TweetDialog
   }
 });
 

@@ -25,7 +25,7 @@ function execute (func, context) {
 }
 
 function _getHomeTimeline (client, context) {
-  client.get('statuses/home_timeline', {}, function(error, tweets, response) {
+  client.get('statuses/home_timeline', {}, function (error, tweets, response) {
     if (!error) {
       context.commit('getHomeTimeline', tweets);
     }
@@ -40,5 +40,8 @@ function _getHomeTimeline (client, context) {
 export default {
   getHomeTimeline (context) {
     execute(_getHomeTimeline, context);
+  },
+  showTweetDialog (context) {
+    context.commit('showTweetDialog', context);
   }
 };

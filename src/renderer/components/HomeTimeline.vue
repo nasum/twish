@@ -7,7 +7,7 @@
       </h5>
       <input class="form-control" type="text" placeholder="Search for someone">
     </li>
-    <li class="list-group-item" v-for="status in $store.state.TweetModule.tweets">
+    <li class="list-group-item" v-for="status in $store.state.Tweet.tweets">
       <tweet :status="status"></tweet>
     </li>
   </ul>
