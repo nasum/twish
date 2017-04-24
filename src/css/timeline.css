@@ -1,0 +1,11 @@
+.pane {
+  width: 400px;
+  height: 100%;
+}
+
+.media-body p {
+  font-size: 16px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}

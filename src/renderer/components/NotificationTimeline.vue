@@ -17,9 +17,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.pane {
-  width: 350px;
-  height: 100%;
-}
-</style>
+<style src="css/timeline.css"></style>

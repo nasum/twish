@@ -42,6 +42,6 @@ export default {
   flex-wrap: wrap;
   height: 100%;
   overflow-x: auto;
-  width: 900px;
+  width: 1200px;
 }
 </style>
