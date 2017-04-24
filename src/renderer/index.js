@@ -5,7 +5,7 @@ import Welcome from './components/Welcome';
 import AppRoot from './components/AppRoot';
 
 import actions from './actions';
-import modules from './modules';
+import TweetModule from './TweetModule';
 
 document.title = __('title');
 
@@ -16,10 +16,12 @@ const routes = [
   { path: '/', component: Welcome },
   { path: '/app', component: AppRoot }
 ];
-console.log(actions);
+
 const store = new Vuex.Store({
   actions,
-  modules
+  modules: {
+    TweetModule: TweetModule
+  }
 });
 
 const router = new VueRouter({

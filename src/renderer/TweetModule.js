@@ -4,7 +4,7 @@ const state = {
 
 const mutations = {
   addTweet (state, tweets) {
-    state.push(tweets);
+    state.tweets.unshift(tweets);
   }
 };
 

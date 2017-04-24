@@ -22,7 +22,6 @@
       </div>
     </div>
   </div>
-  <pin-form-dialog></pin-form-dialog>
 </div>
 </template>
 

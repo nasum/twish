@@ -25,11 +25,9 @@ function execute (func, context) {
 }
 
 function _getHomeTimeline (client, context) {
-  console.log(client);
   const stream = client.stream('user');
   stream.on('data', (tweet) => {
-    console.log(tweet);
-    context.commit('addTweet', [tweet]);
+    context.commit('addTweet', tweet);
   });
 }
 

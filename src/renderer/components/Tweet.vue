@@ -1,14 +1,18 @@
 <template>
-<li class="list-group-item">
-  <img class="img-circle media-object pull-left" src="/assets/img/avatar2.png" width="32" height="32">
+<div>
+  <img class="img-circle media-object pull-left" :src="status.user.profile_image_url" width="32" height="32">
   <div class="media-body">
-    <strong>List item title</strong>
-    <p>Lorem ipsum dolor sit amet.hohgohgoehogheogheohgeohgeohogheoh</p>
+    <strong>{{status.user.name}}</strong>
+    <p>{{status.text}}</p>
   </div>
-</li>
+</div>
 </template>
 
 <script>
 export default {
+  props: ['status'],
+  created () {
+    console.log(this.status)
+  }
 }
 </script>
