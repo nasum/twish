@@ -61,22 +61,30 @@ module.exports = {
         }
       }, {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader"})
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader",
+          publicPath: "./build"
+        })
       }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader!sass-loader"})
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader!sass-loader",
+          publicPath: "./build"
+        })
       }, {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+        loader: "file-loader?limit=10000&mimetype=application/font-woff&name=[hash].[ext]&outputPath=fonts/&publicPath=../"
       }, {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+        loader: "file-loader?limit=10000&mimetype=application/octet-stream&name=[hash].[ext]&outputPath=fonts/&publicPath=../"
       }, {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file-loader"
+        loader: "file-loader?limit=10000&mimetype=application/octet-stream&name=[hash].[ext]&outputPath=fonts/&publicPath=../"
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+        loader: "file-loader?limit=10000&mimetype=image/svg+xml&name=[hash].[ext]&outputPath=fonts/&publicPath=../"
       }
     ]
   },

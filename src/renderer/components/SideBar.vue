@@ -2,7 +2,10 @@
 <div class="pane-sm sidebar">
   <nav class="nav-group">
     <h5 class="nav-group-title">Favorites</h5>
-    <button class="btn btn-large btn-primary" @click="showTweetDialog">Primary</button>
+    <span class="nav-group-item" @click="showTweetDialog">
+      <span class="icon icon-twitter"></span>
+      tweet
+    </span>
   </nav>
 </div>
 </template>
