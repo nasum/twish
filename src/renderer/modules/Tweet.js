@@ -16,6 +16,9 @@ const mutations = {
   },
   addTweet (state, tweet) {
     state.tweets.unshift(tweet);
+  },
+  addMention (state, tweet) {
+    state.mentions.unshift(tweet);
   }
 };
 

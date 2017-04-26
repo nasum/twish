@@ -17,7 +17,6 @@ function execute (func, context) {
       access_token_key: accessToken,
       access_token_secret: accessTokenSecret
     });
-
     func(client, context);
   });
 
@@ -25,6 +24,13 @@ function execute (func, context) {
 }
 
 function _initHomeTimeline (client, context) {
+  let user;
+  client.get('account/settings', {}, function (error, data, response) {
+    if (!error) {
+      user = data;
+    }
+  });
+
   client.get('statuses/home_timeline', {}, function (error, tweets, response) {
     if (!error) {
       context.commit('getHomeTimeline', tweets);
@@ -33,6 +39,9 @@ function _initHomeTimeline (client, context) {
 
   const stream = client.stream('user');
   stream.on('data', (tweet) => {
+    if (tweet.in_reply_to_screen_name === user.screen_name) {
+      context.commit('addMention', tweet);
+    }
     context.commit('addTweet', tweet);
   });
 }
