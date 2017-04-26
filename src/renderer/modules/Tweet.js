@@ -9,10 +9,10 @@ const mutations = {
     setTweets(state.tweets, tweets);
   },
   getMentionTimeline (state, tweets) {
-    setMention(state.mentions, tweets);
+    setMentionTweets(state.mentions, tweets);
   },
-  getDirectMessage (state, tweets) {
-    setTweets(state.directMessages, tweets);
+  getDirectMessage (state, messages) {
+    setMessages(state.directMessages, messages);
   },
   addTweet (state, tweet) {
     state.tweets.unshift(tweet);
@@ -21,13 +21,19 @@ const mutations = {
 
 function setTweets (target, tweets) {
   tweets.forEach((tweet) => {
-    target.unshift(tweet);
+    target.push(tweet);
   });
 }
 
-function setMention (target, messages) {
+function setMentionTweets (target, tweets) {
+  tweets.forEach((tweet) => {
+    target.push(tweet);
+  });
+}
+
+function setMessages (target, messages) {
   messages.forEach((message) => {
-    target.unshift(message);
+    target.push(message);
   });
 }
 
