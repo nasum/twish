@@ -4,7 +4,7 @@
     <div class="tweet-dialog" @click.stop>
       <form class="tweet-form" method="dialog">
           <textarea class="tweet-area" placeholder="What`s happning?" v-model="$store.state.TweetDialog.message"></textarea><br>
-          <div class="btn-group">
+          <div class="btn-group pull-right">
             <button type="submit" class="btn btn-large btn-default" value="cancel" @click="cancel">Cancel</button>
             <button type="submit" class="btn btn-large btn-primary" value="tweet" @click="tweet">Tweet</button>
           </div>
