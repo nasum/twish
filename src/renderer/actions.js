@@ -45,12 +45,23 @@ function _initMentionTimeline (client, context) {
   });
 }
 
+function _initDirectMessage (client, context) {
+  client.get('direct_messages', {}, function (error, messages, response) {
+    if (!error) {
+      context.commit('getDirectMessage', messages);
+    }
+  });
+}
+
 export default {
   initHomeTimeline (context) {
     execute(_initHomeTimeline, context);
   },
   initMentionTimeline (context) {
     execute(_initMentionTimeline, context);
+  },
+  initDirectMessage (context) {
+    execute(_initDirectMessage, context);
   },
   showTweetDialog (context) {
     context.commit('showTweetDialog', context);

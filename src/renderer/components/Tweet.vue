@@ -10,9 +10,6 @@
 
 <script>
 export default {
-  props: ['status'],
-  created () {
-    console.log(this.status)
-  }
+  props: ['status']
 }
 </script>

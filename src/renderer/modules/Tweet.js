@@ -1,6 +1,7 @@
 const state = {
   tweets: [],
-  mentions: []
+  mentions: [],
+  directMessages: []
 };
 
 const mutations = {
@@ -8,7 +9,10 @@ const mutations = {
     setTweets(state.tweets, tweets);
   },
   getMentionTimeline (state, tweets) {
-    setTweets(state.mentions, tweets);
+    setMention(state.mentions, tweets);
+  },
+  getDirectMessage (state, tweets) {
+    setTweets(state.directMessages, tweets);
   },
   addTweet (state, tweet) {
     state.tweets.unshift(tweet);
@@ -18,6 +22,12 @@ const mutations = {
 function setTweets (target, tweets) {
   tweets.forEach((tweet) => {
     target.unshift(tweet);
+  });
+}
+
+function setMention (target, messages) {
+  messages.forEach((message) => {
+    target.unshift(message);
   });
 }
 
