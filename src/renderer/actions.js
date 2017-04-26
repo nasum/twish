@@ -53,6 +53,15 @@ function _initDirectMessage (client, context) {
   });
 }
 
+function _sendTweet (client, context) {
+  client.post('statuses/update', { status: context.state.TweetDialog.message }, function (error, tweet, response) {
+    if (error) {
+      throw error;
+    }
+    context.state.TweetDialog.message = '';
+  });
+}
+
 export default {
   initHomeTimeline (context) {
     execute(_initHomeTimeline, context);
@@ -65,5 +74,8 @@ export default {
   },
   showTweetDialog (context) {
     context.commit('showTweetDialog', context);
+  },
+  sendTweet (context) {
+    execute(_sendTweet, context);
   }
 };
