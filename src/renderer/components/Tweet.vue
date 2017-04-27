@@ -4,6 +4,11 @@
   <div class="media-body">
     <strong>{{status.user.name}}</strong>
     <p>{{status.text}}</p>
+    <div class="action-area">
+      <span class="icon icon-reply"></span>
+      <span class="icon icon-retweet"></span>
+      <span class="icon icon-heart-empty"></span>
+    </div>
   </div>
 </div>
 </template>
@@ -13,3 +18,9 @@ export default {
   props: ['status']
 }
 </script>
+
+<style lang="scss">
+.action-area {
+  font-size: 20px;
+}
+</style>
