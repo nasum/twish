@@ -1,7 +1,7 @@
 import storage from 'electron-json-storage';
 import Twitter from 'twitter';
 
-function execute (func, context) {
+function execute (func, context, obj) {
   let client;
   storage.get('oauthInfo', function (err, data) {
     if (err) {
@@ -17,7 +17,7 @@ function execute (func, context) {
       access_token_key: accessToken,
       access_token_secret: accessTokenSecret
     });
-    func(client, context);
+    func(client, context, obj);
   });
 
   return client;
@@ -63,7 +63,12 @@ function _initDirectMessage (client, context) {
 }
 
 function _sendTweet (client, context) {
-  client.post('statuses/update', { status: context.state.TweetDialog.message }, function (error, tweet, response) {
+  const tweetParams = {
+    status: context.state.TweetDialog.message,
+    in_reply_to_status_id: context.state.TweetDialog.target_tweet_id
+  };
+  console.log(tweetParams.in_reply_to_status_id);
+  client.post('statuses/update', tweetParams, function (error, tweet, response) {
     if (error) {
       throw error;
     }
@@ -81,10 +86,14 @@ export default {
   initDirectMessage (context) {
     execute(_initDirectMessage, context);
   },
-  showTweetDialog (context) {
-    context.commit('showTweetDialog', context);
+  showTweetDialog (context, obj) {
+    context.commit('showTweetDialog', obj);
+  },
+  closeTweetDialog (context) {
+    context.commit('closeTweetDialog');
   },
   sendTweet (context) {
     execute(_sendTweet, context);
+    context.commit('closeTweetDialog');
   }
 };

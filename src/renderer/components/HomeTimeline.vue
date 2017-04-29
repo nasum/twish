@@ -16,6 +16,7 @@
 
 <script>
 import Tweet from './Tweet';
+
 export default {
   components: {
     Tweet: Tweet

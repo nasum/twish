@@ -18,14 +18,13 @@
 export default {
   methods: {
     clickGrassPane () {
-      this.$store.dispatch('showTweetDialog');
+      this.$store.dispatch('closeTweetDialog');
     },
     cancel () {
-      this.$store.dispatch('showTweetDialog');
+      this.$store.dispatch('closeTweetDialog');
     },
     tweet () {
       this.$store.dispatch('sendTweet');
-      this.$store.dispatch('showTweetDialog');
     }
   }
 }

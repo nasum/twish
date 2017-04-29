@@ -1,3 +1,5 @@
+import TweetStatus from '../data/TweetStatus';
+
 const state = {
   tweets: [],
   mentions: [],
@@ -15,22 +17,22 @@ const mutations = {
     setMessages(state.directMessages, messages);
   },
   addTweet (state, tweet) {
-    state.tweets.unshift(tweet);
+    state.tweets.unshift(new TweetStatus(tweet));
   },
   addMention (state, tweet) {
-    state.mentions.unshift(tweet);
+    state.mentions.unshift(new TweetStatus(tweet));
   }
 };
 
 function setTweets (target, tweets) {
   tweets.forEach((tweet) => {
-    target.push(tweet);
+    target.push(new TweetStatus(tweet));
   });
 }
 
 function setMentionTweets (target, tweets) {
   tweets.forEach((tweet) => {
-    target.push(tweet);
+    target.push(new TweetStatus(tweet));
   });
 }
 
