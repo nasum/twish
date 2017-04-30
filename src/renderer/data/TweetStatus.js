@@ -10,5 +10,19 @@ export default class TweetStatus {
       name: status.user.name,
       screen_name: status.user.screen_name
     };
+    this.entities = status.entities;
+  }
+
+  getMedia () {
+    let media;
+    if (this.entities.media) {
+      media = this.entities.media.map((value) => {
+        return {
+          media_url: value.media_url,
+          media_thumb: `${value.media_url}:thumb`
+        };
+      });
+    }
+    return media;
   }
 }

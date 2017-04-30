@@ -5,7 +5,14 @@
     <strong>{{status.user.name}}</strong><span>@{{ status.user.screen_name }}</span>
     <p>{{status.text}}</p>
     <div>
-      {{ date_st }}
+      <ul class="media-list">
+        <li class="media" v-for="media in mediaList">
+          <img v-bind:src="media.media_thumb">
+        </li>
+      </ul>
+    </div>
+    <div>
+      {{ dateSt }}
     </div>
     <div class="action-area">
       <span class="icon icon-reply reaction" @click="reply"></span>
@@ -22,8 +29,11 @@ import moment from 'moment';
 export default {
   props: ['status'],
   computed: {
-    date_st: function () {
+    dateSt: function () {
       return moment(new Date(this.status.created_at)).format("YYYY-MM-DD HH:mm:ss a");
+    },
+    mediaList: function () {
+      return this.status.getMedia();
     }
   },
   methods: {
@@ -48,6 +58,9 @@ export default {
 </script>
 
 <style lang="scss">
+.media-list {
+  padding: 0px;
+}
 .action-area {
   font-size: 20px;
 
