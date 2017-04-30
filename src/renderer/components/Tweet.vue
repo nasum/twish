@@ -5,7 +5,7 @@
     <strong>{{status.user.name}}</strong><span>@{{ status.user.screen_name }}</span>
     <p>{{status.text}}</p>
     <div>
-      {{status.created_at}}
+      {{ date_st }}
     </div>
     <div class="action-area">
       <span class="icon icon-reply reaction" @click="reply"></span>
@@ -17,8 +17,15 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   props: ['status'],
+  computed: {
+    date_st: function () {
+      return moment(new Date(this.status.created_at)).format("YYYY-MM-DD HH:mm:ss a");
+    }
+  },
   methods: {
     showDetail: function () {
 

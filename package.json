@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "electron-json-storage": "^3.0.5",
+    "moment": "^2.18.1",
     "oauth": "^0.9.15",
     "twitter": "^1.7.0",
     "vue": "^2.3.0",
