@@ -8,9 +8,9 @@
       {{status.created_at}}
     </div>
     <div class="action-area">
-      <span class="icon icon-reply" @click="reply"></span>
-      <span class="icon icon-retweet"></span>
-      <span class="icon icon-heart-empty"></span>
+      <span class="icon icon-reply reaction" @click="reply"></span>
+      <span class="icon icon-retweet reaction"></span>
+      <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like"></span>
     </div>
   </div>
 </div>
@@ -30,7 +30,11 @@ export default {
 
     },
     like: function () {
-
+      if (this.status.favorited) {
+        this.$store.dispatch('destroyLike', { status: this.status });
+      } else {
+        this.$store.dispatch('createLike', { status: this.status });
+      }
     }
   }
 }
@@ -39,5 +43,9 @@ export default {
 <style lang="scss">
 .action-area {
   font-size: 20px;
+
+  .reaction {
+    cursor: pointer;
+  }
 }
 </style>

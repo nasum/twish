@@ -17,13 +17,15 @@ const mutations = {
       state.target_user_id = '';
       state.message = '';
     }
-
   },
   closeTweetDialog (state) {
     state.target_tweet_id = '';
     state.target_user_id = '';
     state.message = '';
     state.open = false;
+  },
+  syncMessage (state, obj) {
+    state.message = obj.message;
   }
 };
 

@@ -67,12 +67,31 @@ function _sendTweet (client, context) {
     status: context.state.TweetDialog.message,
     in_reply_to_status_id: context.state.TweetDialog.target_tweet_id
   };
-  console.log(tweetParams.in_reply_to_status_id);
   client.post('statuses/update', tweetParams, function (error, tweet, response) {
     if (error) {
       throw error;
     }
-    context.state.TweetDialog.message = '';
+    context.commit('closeTweetDialog');
+  });
+}
+
+function _createLike (client, context, obj) {
+  client.post('favorites/create', { id: obj.status.id }, function (error, tweet, response) {
+    if (error) {
+      throw error;
+    }
+
+    obj.status.favorited = true;
+  });
+}
+
+function _destroyLike (client, context, obj) {
+  client.post('favorites/destroy', { id: obj.status.id }, function (error, tweet, response) {
+    if (error) {
+      throw error;
+    }
+
+    obj.status.favorited = false;
   });
 }
 
@@ -94,6 +113,14 @@ export default {
   },
   sendTweet (context) {
     execute(_sendTweet, context);
-    context.commit('closeTweetDialog');
+  },
+  syncMessage (context, obj) {
+    context.commit('syncMessage', obj);
+  },
+  createLike (context, obj) {
+    execute(_createLike, context, obj);
+  },
+  destroyLike (context, obj) {
+    execute(_destroyLike, context, obj);
   }
 };

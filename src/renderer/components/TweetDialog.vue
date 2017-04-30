@@ -16,14 +16,15 @@
 
 <script>
 export default {
+  name: 'TweetDialog',
   methods: {
-    clickGrassPane () {
+    clickGrassPane: function () {
       this.$store.dispatch('closeTweetDialog');
     },
-    cancel () {
+    cancel: function () {
       this.$store.dispatch('closeTweetDialog');
     },
-    tweet () {
+    tweet: function () {
       this.$store.dispatch('sendTweet');
     }
   }
