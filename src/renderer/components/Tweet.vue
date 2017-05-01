@@ -1,5 +1,5 @@
 <template>
-<div>
+<li class="list-group-item" >
   <img class="img-circle media-object pull-left" :src="status.user.profile_image_url" width="50" height="50">
   <div class="media-body">
     <strong>{{status.user.name}}</strong><span>@{{ status.user.screen_name }}</span>
@@ -20,14 +20,18 @@
       <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like"></span>
     </div>
   </div>
-</div>
+</li>
 </template>
 
 <script>
 import moment from 'moment';
+import Loading from './Loading';
 
 export default {
   props: ['status'],
+  components: {
+    loading: Loading
+  },
   computed: {
     dateSt: function () {
       return moment(new Date(this.status.created_at)).format("YYYY-MM-DD HH:mm:ss a");
