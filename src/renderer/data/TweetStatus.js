@@ -1,16 +1,29 @@
+import User from './User';
+
 export default class TweetStatus {
   constructor (status) {
     this.text = status.text;
     this.id = status.id_str;
     this.created_at = status.created_at;
     this.favorited = status.favorited;
-    this.user = {
-      id: status.user.id_str,
-      profile_image_url: status.user.profile_image_url,
-      name: status.user.name,
-      screen_name: status.user.screen_name
-    };
+    this.user = status.user;
     this.entities = status.entities;
+    this.retweeted_status = status.retweeted_status;
+    this.retweet_user = status.retweet_user;
+  }
+
+  getUser () {
+    return new User(this.user);
+  }
+
+  getRetweetUser () {
+    let retweetUser;
+    if (this.retweet_user) {
+      retweetUser = new User(this.retweet_user);
+    } else {
+      retweetUser = {};
+    }
+    return retweetUser;
   }
 
   getMedia () {
@@ -24,5 +37,9 @@ export default class TweetStatus {
       });
     }
     return media;
+  }
+
+  getRetweetStatus () {
+    return this.retweeted_status;
   }
 }

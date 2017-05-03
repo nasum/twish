@@ -17,7 +17,7 @@ const mutations = {
     setMessages(state.directMessages, messages);
   },
   addTweet (state, tweet) {
-    state.tweets.unshift(new TweetStatus(tweet));
+    state.tweets.unshift(new TweetStatus(createTweetStatus(tweet)));
   },
   addMention (state, tweet) {
     state.mentions.unshift(new TweetStatus(tweet));
@@ -26,8 +26,19 @@ const mutations = {
 
 function setTweets (target, tweets) {
   tweets.forEach((tweet) => {
-    target.push(new TweetStatus(tweet));
+    target.push(new TweetStatus(createTweetStatus(tweet)));
   });
+}
+
+function createTweetStatus (status) {
+  let editStatus;
+  if (status.retweeted_status) {
+    editStatus = status.retweeted_status;
+    editStatus.retweet_user = status.user;
+  } else {
+    editStatus = status;
+  }
+  return editStatus;
 }
 
 function setMentionTweets (target, tweets) {

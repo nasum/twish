@@ -1,9 +1,14 @@
 <template>
 <li class="list-group-item" >
-  <img class="img-circle media-object pull-left" :src="status.user.profile_image_url" width="50" height="50">
+  <div class="user-content pull-left">
+    <img class="img-circle media-object" :src="userData.profile_image_url" width="50" height="50">
+    <div class="retweet-user" v-if="retweetUserData">
+      <img class="img-circle media-object" :src="retweetUserData.profile_image_url" width="25" height="25"><span class="icon icon-retweet"></span>
+    </div>
+  </div>
   <div class="media-body">
-    <strong>{{status.user.name}}</strong><span>@{{ status.user.screen_name }}</span>
-    <p>{{status.text}}</p>
+    <strong>{{ userData.name }}</strong><span>@{{ userData.screen_name }}</span>
+    <p>{{ status.text }}</p>
     <div>
       <ul class="media-list">
         <li class="media" v-for="media in mediaList">
@@ -26,6 +31,8 @@
 <script>
 import moment from 'moment';
 import Loading from './Loading';
+import TweetStatus from '../data/TweetStatus';
+import User from '../data/User';
 
 export default {
   props: ['status'],
@@ -33,6 +40,17 @@ export default {
     loading: Loading
   },
   computed: {
+    userData: function () {
+      return this.status.getUser();
+    },
+    retweetUserData: function () {
+      const userData = this.status.getRetweetUser();
+      if (userData instanceof User) {
+        return userData;
+      } else {
+        return;
+      }
+    },
     dateSt: function () {
       return moment(new Date(this.status.created_at)).format("YYYY-MM-DD HH:mm:ss a");
     },
@@ -62,9 +80,22 @@ export default {
 </script>
 
 <style lang="scss">
+.user-content {
+  text-align: center;
+  padding-right: 10px;
+}
+
+.retweet-user {
+  span, img {
+    font-size: 20px;
+    vertical-align: middle;
+  }
+}
+
 .media-list {
   padding: 0px;
 }
+
 .action-area {
   font-size: 20px;
 
