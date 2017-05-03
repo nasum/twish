@@ -22,23 +22,27 @@ const oauth = new OAuth(
 let mainWindow;
 
 function createWindow () {
-  mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    titleBarStyle: 'hidden'
+  storage.get('appOptions', function (e, args = { x: 0, y: 0, width: 600, height: 500 }) {
+    mainWindow = new BrowserWindow({
+      x: args.x,
+      y: args.y,
+      width: args.width,
+      height: args.height,
+      titleBarStyle: 'hidden'
+    });
+
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, '../index.html'),
+      protocol: 'file:',
+      slashes: true
+    }));
+
+    mainWindow.on('closed', function () {
+      mainWindow = null;
+    });
+
+    mainWindow.show();
   });
-
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, '../index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
-
-  mainWindow.on('closed', function () {
-    mainWindow = null;
-  });
-
-  mainWindow.show();
 }
 
 app.on('ready', createWindow);
