@@ -1,5 +1,5 @@
 <template>
-<div class="pane">
+<div class="pane" @scroll="getScrollParam">
   <ul class="list-group">
     <li class="list-group-header">
       <h5>
@@ -18,6 +18,26 @@ import Tweet from './Tweet';
 export default {
   components: {
     Tweet: Tweet
+  },
+  data: function () {
+    return {
+      timeline_on: true
+    }
+  },
+  methods: {
+    getScrollParam: function (e) {
+      scroll = e.target.scrollTop;
+
+      if(scroll == 0) {
+        this.$store.dispatch('initHomeTimeline');
+        this.timeline_on = true;
+      } else {
+        if (this.timeline_on == true) {
+          this.$store.dispatch('stopTimeline');
+          this.timeline_on = false;
+        }
+      }
+    }
   },
   created () {
     this.$store.dispatch('initHomeTimeline')

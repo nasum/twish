@@ -1,6 +1,8 @@
 import storage from 'electron-json-storage';
 import Twitter from 'twitter';
 
+let stream;
+
 function execute (func, context, obj) {
   let client;
   storage.get('oauthInfo', function (err, data) {
@@ -37,7 +39,7 @@ function _initHomeTimeline (client, context) {
     }
   });
 
-  const stream = client.stream('user');
+  stream = client.stream('user');
   stream.on('data', (tweet) => {
     if (tweet.in_reply_to_screen_name === user.screen_name) {
       context.commit('addMention', tweet);
@@ -98,6 +100,9 @@ function _destroyLike (client, context, obj) {
 export default {
   initHomeTimeline (context) {
     execute(_initHomeTimeline, context);
+  },
+  stopTimeline () {
+    stream.destroy();
   },
   initMentionTimeline (context) {
     execute(_initMentionTimeline, context);
