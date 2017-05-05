@@ -145,5 +145,11 @@ export default {
   },
   sendRetweet (context) {
     execute(_sendRetweet, context);
+  },
+  showMediaDialog (context, obj) {
+    context.commit('showMediaDialog', obj);
+  },
+  closeMediaDialog (context) {
+    context.commit('closeMediaDialog');
   }
 };

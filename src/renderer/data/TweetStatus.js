@@ -32,7 +32,9 @@ export default class TweetStatus {
       media = this.entities.media.map((value) => {
         return {
           media_url: value.media_url,
-          media_thumb: `${value.media_url}:thumb`
+          media_thumb: `${value.media_url}:thumb`,
+          media_small: `${value.media_url}:small`,
+          media_medium: `${value.media_url}:medium`
         };
       });
     }

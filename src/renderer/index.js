@@ -10,6 +10,7 @@ import actions from './actions';
 import Tweet         from './modules/Tweet';
 import TweetDialog   from './modules/TweetDialog';
 import RetweetDialog from './modules/RetweetDialog';
+import MediaDialog   from './modules/MediaDialog';
 
 document.title = __('title');
 
@@ -26,7 +27,8 @@ const store = new Vuex.Store({
   modules: {
     Tweet: Tweet,
     TweetDialog: TweetDialog,
-    RetweetDialog: RetweetDialog
+    RetweetDialog: RetweetDialog,
+    MediaDialog: MediaDialog
   }
 });
 

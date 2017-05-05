@@ -12,7 +12,7 @@
     <div>
       <ul class="media-list">
         <li class="media" v-for="media in mediaList">
-          <img v-bind:src="media.media_thumb">
+          <img v-bind:src="media.media_thumb" @click="showMediaDialog(media.media_small)">
         </li>
       </ul>
     </div>
@@ -81,6 +81,9 @@ export default {
       } else {
         this.$store.dispatch('createLike', { status: this.status });
       }
+    },
+    showMediaDialog: function (image_url) {
+      this.$store.dispatch('showMediaDialog', image_url);
     }
   }
 }
@@ -101,6 +104,10 @@ export default {
 
 .media-list {
   padding: 0px;
+
+  img {
+    cursor: pointer;
+  }
 }
 
 .action-area {
