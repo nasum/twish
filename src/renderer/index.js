@@ -7,8 +7,9 @@ import Welcome from './components/Welcome';
 import AppRoot from './components/AppRoot';
 
 import actions from './actions';
-import Tweet from './modules/Tweet';
-import TweetDialog from './modules/TweetDialog';
+import Tweet         from './modules/Tweet';
+import TweetDialog   from './modules/TweetDialog';
+import RetweetDialog from './modules/RetweetDialog';
 
 document.title = __('title');
 
@@ -24,7 +25,8 @@ const store = new Vuex.Store({
   actions,
   modules: {
     Tweet: Tweet,
-    TweetDialog: TweetDialog
+    TweetDialog: TweetDialog,
+    RetweetDialog: RetweetDialog
   }
 });
 

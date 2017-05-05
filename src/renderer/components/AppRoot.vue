@@ -6,18 +6,21 @@
       </header>
       <app-main></app-main>
       <tweet-dialog></tweet-dialog>
+      <retweet-dialog></retweet-dialog>
     </div>
   </div>
 </template>
 
 <script>
-import AppMain     from './AppMain.vue';
-import TweetDialog from './TweetDialog';
+import AppMain       from './AppMain.vue';
+import TweetDialog   from './TweetDialog';
+import RetweetDialog from './RetweetDialog';
 
 export default {
   components: {
     AppMain:     AppMain,
-    TweetDialog: TweetDialog
+    TweetDialog: TweetDialog,
+    RetweetDialog: RetweetDialog
   }
 }
 </script>

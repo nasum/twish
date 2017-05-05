@@ -97,6 +97,15 @@ function _destroyLike (client, context, obj) {
   });
 }
 
+function _sendRetweet (client, context) {
+  client.post('statuses/retweet/', { id: context.state.RetweetDialog.target_tweet_id }, function (error, tweet, response) {
+    if (error) {
+      throw error;
+    }
+    context.commit('closeRetweetDialog');
+  });
+}
+
 export default {
   initHomeTimeline (context) {
     execute(_initHomeTimeline, context);
@@ -127,5 +136,14 @@ export default {
   },
   destroyLike (context, obj) {
     execute(_destroyLike, context, obj);
+  },
+  showRetweetDialog (context, obj) {
+    context.commit('showRetweetDialog', obj);
+  },
+  closeRetweetDialog (context) {
+    context.commit('closeRetweetDialog');
+  },
+  sendRetweet (context) {
+    execute(_sendRetweet, context);
   }
 };

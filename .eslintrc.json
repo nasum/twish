@@ -45,6 +45,10 @@
       {
         "allow": ["log"]
       }
+    ],
+    "no-multi-spaces": [
+      "error",
+      { "exceptions": { "ImportDeclaration": true } }
     ]
   },
   "globals": {

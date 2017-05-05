@@ -21,7 +21,7 @@
     </div>
     <div class="action-area">
       <span class="icon icon-reply reaction" @click="reply"></span>
-      <span class="icon icon-retweet reaction"></span>
+      <span class="icon icon-retweet reaction" @click="retweet"></span>
       <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like"></span>
     </div>
   </div>
@@ -66,7 +66,14 @@ export default {
       this.$store.dispatch('showTweetDialog', { status: this.status });
     },
     retweet: function () {
-
+      this.$store.dispatch('showRetweetDialog', {
+        profile_image_url: this.status.getUser().profile_image_url,
+        name: this.status.getUser().name,
+        screen_name: this.status.getUser().screen_name,
+        text: this.status.text,
+        date: moment(new Date(this.status.created_at)).format("YYYY-MM-DD HH:mm:ss a"),
+        target_tweet_id: this.status.id
+      });
     },
     like: function () {
       if (this.status.favorited) {
