@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import VueShortKey from 'vue-shortkey';
 import storage from 'electron-json-storage';
 
 import Welcome from './components/Welcome';
@@ -16,6 +17,7 @@ document.title = __('title');
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VueShortKey);
 
 const routes = [
   { path: '/', component: Welcome },
