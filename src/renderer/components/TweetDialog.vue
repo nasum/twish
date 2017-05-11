@@ -9,9 +9,7 @@
               type="submit"
               class="btn btn-large btn-default"
               value="cancel"
-              @click="cancel"
-              v-shortkey.push="['enter']"
-              @shortkey="cancel">Cancel</button>
+              @click="cancel">Cancel</button>
             <button
               type="submit"
               class="btn btn-large btn-primary"
