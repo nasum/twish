@@ -72,6 +72,7 @@ export default {
         screen_name: this.status.getUser().screen_name,
         text: this.status.text,
         date: moment(new Date(this.status.created_at)).format("YYYY-MM-DD HH:mm:ss a"),
+        mediaList: this.status.getMedia(),
         target_tweet_id: this.status.id
       });
     },

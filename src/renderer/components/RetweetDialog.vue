@@ -9,6 +9,13 @@
         <strong>{{ $store.state.RetweetDialog.name }}</strong><span>@{{ $store.state.RetweetDialog.screen_name }}</span>
         <p>{{ $store.state.RetweetDialog.text }}</p>
         <div>
+          <ul class="media-list">
+            <li class="media" v-for="media in $store.state.RetweetDialog.mediaList">
+              <img v-bind:src="media.media_thumb" @click="showMediaDialog(media.media_small)">
+            </li>
+          </ul>
+        </div>
+        <div>
           {{ $store.state.RetweetDialog.date }}
         </div>
       </div>

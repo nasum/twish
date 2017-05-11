@@ -5,6 +5,7 @@ const state = {
   screen_name: '',
   text: '',
   date: '',
+  mediaList: [],
   target_tweet_id: ''
 };
 
@@ -16,6 +17,7 @@ const mutations = {
     state.text = obj.text;
     state.date = obj.date;
     state.open = true;
+    state.mediaList = obj.mediaList;
     state.target_tweet_id = obj.target_tweet_id;
   },
   closeRetweetDialog (state) {
