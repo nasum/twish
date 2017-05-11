@@ -42,6 +42,9 @@ function _initHomeTimeline (client, context) {
   stream = client.stream('user');
   stream.on('data', (tweet) => {
     if (tweet.in_reply_to_screen_name === user.screen_name) {
+      new Notification(`Reply @${tweet.user.screen_name}`, {
+        body: tweet.text
+      });
       context.commit('addMention', tweet);
     }
     context.commit('addTweet', tweet);

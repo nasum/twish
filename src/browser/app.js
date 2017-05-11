@@ -1,6 +1,7 @@
 import { OAuth } from 'oauth';
 import electron from 'electron';
 import storage from 'electron-json-storage';
+
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const shell = electron.shell;
