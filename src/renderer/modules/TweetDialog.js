@@ -7,6 +7,9 @@ const state = {
 
 const mutations = {
   showTweetDialog (state, obj) {
+    if (state.open) {
+      return;
+    }
     state.open = true;
     if (obj) {
       state.target_tweet_id = obj.status.id;
