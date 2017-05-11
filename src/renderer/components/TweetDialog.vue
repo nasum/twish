@@ -1,5 +1,5 @@
 <template>
-<transition name="fade">
+<transition name="fade" v-on:enter="enter">
   <div class="grass-pane" v-show="$store.state.TweetDialog.open" @click="clickGrassPane">
     <div class="tweet-dialog" @click.stop>
       <form class="tweet-form" method="dialog">
@@ -26,6 +26,9 @@ export default {
     },
     tweet: function () {
       this.$store.dispatch('sendTweet');
+    },
+    enter: function () {
+      document.getElementsByClassName('tweet-area')[0].focus();
     }
   }
 }
