@@ -17,7 +17,7 @@ import Tweet from './Tweet';
 
 export default {
   components: {
-    Tweet: Tweet
+    Tweet: Tweet,
   },
   data: function () {
     return {
@@ -28,8 +28,8 @@ export default {
     getScrollParam: function (e) {
       scroll = e.target.scrollTop;
 
-      if(scroll == 0) {
-        this.$store.dispatch('initHomeTimeline');
+      if (scroll == 0) {
+        this.$store.dispatch('startTimeline');
         this.timeline_on = true;
       } else {
         if (this.timeline_on == true) {

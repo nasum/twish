@@ -113,8 +113,11 @@ export default {
   initHomeTimeline (context) {
     execute(_initHomeTimeline, context);
   },
-  stopTimeline () {
-    stream.destroy();
+  startTimeline (context) {
+    context.commit('startTimeline');
+  },
+  stopTimeline (context) {
+    context.commit('stopTimeline');
   },
   initMentionTimeline (context) {
     execute(_initMentionTimeline, context);

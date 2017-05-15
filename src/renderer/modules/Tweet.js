@@ -2,8 +2,10 @@ import TweetStatus from '../data/TweetStatus';
 
 const state = {
   tweets: [],
+  tmpTweets: [],
   mentions: [],
-  directMessages: []
+  directMessages: [],
+  startFlg: true
 };
 
 const mutations = {
@@ -17,10 +19,24 @@ const mutations = {
     setMessages(state.directMessages, messages);
   },
   addTweet (state, tweet) {
-    state.tweets.unshift(new TweetStatus(createTweetStatus(tweet)));
+    if (state.startFlg) {
+      state.tmpTweets.reverse().forEach((tweet) => {
+        state.tweets.unshift(tweet);
+      });
+      state.tmpTweets = []
+      state.tweets.unshift(new TweetStatus(createTweetStatus(tweet)));
+    } else {
+      state.tmpTweets.unshift(new TweetStatus(createTweetStatus(tweet)));
+    }
   },
   addMention (state, tweet) {
     state.mentions.unshift(new TweetStatus(tweet));
+  },
+  startTimeline (state) {
+    state.startFlg = true;
+  },
+  stopTimeline (state) {
+    state.startFlg = false;
   }
 };
 
