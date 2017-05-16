@@ -40,7 +40,7 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('initHomeTimeline')
+    this.$store.dispatch('initHomeTimeline');
   }
 }
 </script>
