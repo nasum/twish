@@ -7,7 +7,7 @@
       </h5>
       <input class="form-control" type="text" placeholder="Search for someone">
     </li>
-    <tweet :status="status" v-for="(status, key) in $store.state.Tweet.tweets" :key="key"></tweet>
+    <tweet :status="status" v-for="(status, key) in sliceTweets" :key="key"></tweet>
   </ul>
 </div>
 </template>
@@ -22,6 +22,11 @@ export default {
   data: function () {
     return {
       timeline_on: true
+    }
+  },
+  computed: {
+    sliceTweets: function(){
+      return this.$store.state.Tweet.tweets.slice(0, 100);
     }
   },
   methods: {

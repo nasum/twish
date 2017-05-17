@@ -33,7 +33,7 @@ function _initHomeTimeline (client, context) {
     }
   });
 
-  client.get('statuses/home_timeline', {}, function (error, tweets, response) {
+  client.get('statuses/home_timeline', { count: 100 }, function (error, tweets, response) {
     if (!error) {
       context.commit('getHomeTimeline', tweets);
     }
