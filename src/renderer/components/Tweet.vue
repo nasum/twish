@@ -8,7 +8,7 @@
   </div>
   <div class="media-body">
     <strong>{{ userData.name }}</strong><span>@{{ userData.screen_name }}</span>
-    <p>{{ status.text }}</p>
+    <tweet-text :text="status.text"></tweet-text>
     <div>
       <ul class="media-list">
         <li class="media" v-for="media in mediaList">
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import TweetText from './TweetText';
 import moment from 'moment';
 import Loading from './Loading';
 import TweetStatus from '../data/TweetStatus';
@@ -37,7 +38,8 @@ import User from '../data/User';
 export default {
   props: ['status'],
   components: {
-    loading: Loading
+    Loading: Loading,
+    TweetText: TweetText
   },
   computed: {
     userData: function () {
