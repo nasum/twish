@@ -5,6 +5,13 @@ export default {
       { this.text }
     </p>
   },
-  props: ["text"]
+  props: ["text", "urls"],
+  filterLinkText: function(){
+    let computedText = this.text
+    this.urls.forEach((url) => {
+      
+    });
+    return computedText;
+  }
 }
 </script>
