@@ -9,3 +9,11 @@
   overflow: visible;
   text-overflow: clip;
 }
+
+.more-area {
+  text-align: center;
+}
+
+.more-btn {
+  cursor: pointer;
+}

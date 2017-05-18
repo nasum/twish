@@ -8,6 +8,9 @@
       <input class="form-control" type="text" placeholder="Search for someone">
     </li>
     <tweet :status="status" v-for="(status, key) in sliceTweets" :key="key"></tweet>
+    <li class="list-group-item more-area">
+      <button class="btn btn-large btn-primary more-btn" @click="getMore">more</button>
+    </li>
   </ul>
 </div>
 </template>
@@ -21,12 +24,13 @@ export default {
   },
   data: function () {
     return {
-      timeline_on: true
+      timelineOn: true,
+      displayCount: 100,
     }
   },
   computed: {
     sliceTweets: function(){
-      return this.$store.state.Tweet.tweets.slice(0, 100);
+      return this.$store.state.Tweet.tweets.slice(0, this.displayCount);
     }
   },
   methods: {
@@ -35,13 +39,20 @@ export default {
 
       if (scroll == 0) {
         this.$store.dispatch('startTimeline');
-        this.timeline_on = true;
+        this.timelineOn = true;
+        this.displayCount = 100;
       } else {
-        if (this.timeline_on == true) {
+        if (this.timelineOn == true) {
           this.$store.dispatch('stopTimeline');
-          this.timeline_on = false;
+          this.timelineOn = false;
         }
       }
+    },
+    getMore: function () {
+      const tweetMax = this.$store.state.Tweet.tweets;
+      console.log(this.displayCount);
+      console.log(tweetMax.length);
+      this.displayCount = tweetMax.length;
     }
   },
   created () {
