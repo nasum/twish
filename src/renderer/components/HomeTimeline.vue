@@ -49,10 +49,7 @@ export default {
       }
     },
     getMore: function () {
-      const tweetMax = this.$store.state.Tweet.tweets;
-      console.log(this.displayCount);
-      console.log(tweetMax.length);
-      this.displayCount = tweetMax.length;
+      this.displayCount = this.$store.state.Tweet.tweets.length;
     }
   },
   created () {
