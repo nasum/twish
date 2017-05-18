@@ -23,7 +23,7 @@ const mutations = {
       state.tmpTweets.reverse().forEach((tweet) => {
         state.tweets.unshift(tweet);
       });
-      state.tmpTweets = []
+      state.tmpTweets = [];
       state.tweets.unshift(new TweetStatus(createTweetStatus(tweet)));
     } else {
       state.tmpTweets.unshift(new TweetStatus(createTweetStatus(tweet)));
