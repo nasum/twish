@@ -11,3 +11,11 @@
   text-overflow: clip;
   -webkit-user-select: text;
 }
+
+.more-area {
+  text-align: center;
+}
+
+.more-btn {
+  cursor: pointer;
+}
