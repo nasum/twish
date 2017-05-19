@@ -8,7 +8,7 @@
   </div>
   <div class="media-body">
     <strong>{{ userData.name }}</strong><span>@{{ userData.screen_name }}</span>
-    <tweet-text :text="status.text"></tweet-text>
+    <tweet-text :text="status.text" :urls="status.getUrls()"></tweet-text>
     <div>
       <ul class="media-list">
         <li class="media" v-for="media in mediaList">
