@@ -4,8 +4,18 @@
 }
 
 .media-body p {
+  cursor: text;
   font-size: 16px;
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
+  -webkit-user-select: text;
+}
+
+.more-area {
+  text-align: center;
+}
+
+.more-btn {
+  cursor: pointer;
 }
