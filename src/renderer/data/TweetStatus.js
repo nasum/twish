@@ -41,6 +41,16 @@ export default class TweetStatus {
     return media;
   }
 
+  getUrls () {
+    let urls;
+    if (this.entities.urls) {
+      urls = this.entities.urls.map((value) => {
+        return value.url;
+      });
+    }
+    return urls;
+  }
+
   getRetweetStatus () {
     return this.retweeted_status;
   }
