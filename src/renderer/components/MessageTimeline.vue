@@ -5,7 +5,6 @@
       <h5>
         Messages
       </h5>
-      <input class="form-control" type="text" placeholder="Search for someone">
     </li>
     <li class="list-group-item" v-for="message in $store.state.Tweet.directMessages">
       <message-item :status="message"></message-item>

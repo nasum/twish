@@ -5,7 +5,6 @@
       <h5>
         Home
       </h5>
-      <input class="form-control" type="text" placeholder="Search for someone">
     </li>
     <tweet :status="status" v-for="(status, key) in sliceTweets" :key="key"></tweet>
     <li class="list-group-item more-area">

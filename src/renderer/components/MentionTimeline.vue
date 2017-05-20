@@ -5,7 +5,6 @@
       <h5>
         Mention
       </h5>
-      <input class="form-control" type="text" placeholder="Search for someone">
     </li>
     <tweet :status="status" v-for="(status, key) in $store.state.Tweet.mentions" :key="key"></tweet>
   </ul>
