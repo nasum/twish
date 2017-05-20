@@ -1,7 +1,7 @@
 <template>
 <transition name="fade">
   <div class="grass-pane" v-show="$store.state.MediaDialog.open" @click="clickGrassPane">
-    <div class="retweet-dialog dialog">
+    <div class="media-dialog dialog">
       <img v-bind:src="$store.state.MediaDialog.imageUrl">
     </div>
   </div>
@@ -20,6 +20,9 @@ export default {
 </script>
 
 <style lang="scss">
+.media-dialog {
+  padding: 10px;
+}
 .btn-area {
   display: flex;
   justify-content: space-around;

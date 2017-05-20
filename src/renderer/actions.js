@@ -149,6 +149,12 @@ export default {
   closeRetweetDialog (context) {
     context.commit('closeRetweetDialog');
   },
+  showUserDialog (context, obj) {
+    context.commit('showUserDialog', obj);
+  },
+  closeUserDialog (context) {
+    context.commit('closeUserDialog');
+  },
   sendRetweet (context) {
     execute(_sendRetweet, context);
   },

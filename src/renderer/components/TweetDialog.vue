@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style lang="scss">
+.tweet-dialog {
+  width: 600px;
+  padding: 10px;
+}
 .tweet-area {
   width: 100%;
   margin-bottom: 5px;

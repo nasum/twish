@@ -1,9 +1,9 @@
 <template>
 <li class="list-group-item" >
   <div class="user-content pull-left">
-    <img class="img-circle media-object" :src="userData.profile_image_url" width="50" height="50">
+    <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog">
     <div class="retweet-user" v-if="retweetUserData">
-      <img class="img-circle media-object" :src="retweetUserData.profile_image_url" width="25" height="25"><span class="icon icon-retweet"></span>
+      <img class="img-circle media-object user-thumb" :src="retweetUserData.profile_image_url" width="24" height="24" @click="showRetweetUserDialog"><span class="icon icon-retweet"></span>
     </div>
   </div>
   <div class="media-body">
@@ -87,6 +87,12 @@ export default {
     },
     showMediaDialog: function (image_url) {
       this.$store.dispatch('showMediaDialog', image_url);
+    },
+    showUserDialog: function () {
+      this.$store.dispatch('showUserDialog', this.status.getUser());
+    },
+    showRetweetUserDialog: function () {
+      this.$store.dispatch('showUserDialog', this.status.getRetweetUser());
     }
   }
 }
@@ -103,6 +109,10 @@ export default {
     font-size: 20px;
     vertical-align: middle;
   }
+}
+
+.user-thumb {
+  cursor: pointer;
 }
 
 .media-list {

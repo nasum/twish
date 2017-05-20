@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style lang="scss">
+.retweet-dialog {
+  padding: 10px;
+  width: 600px;
+}
 .btn-area {
   display: flex;
   justify-content: space-around;

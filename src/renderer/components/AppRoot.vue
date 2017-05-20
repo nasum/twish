@@ -8,6 +8,7 @@
       <tweet-dialog></tweet-dialog>
       <retweet-dialog></retweet-dialog>
       <media-dialog></media-dialog>
+      <user-dialog></user-dialog>
     </div>
   </div>
 </template>
@@ -17,13 +18,15 @@ import AppMain       from './AppMain.vue';
 import TweetDialog   from './TweetDialog';
 import RetweetDialog from './RetweetDialog';
 import MediaDialog   from './MediaDialog';
+import UserDialog    from './UserDialog';
 
 export default {
   components: {
-    AppMain:     AppMain,
-    TweetDialog: TweetDialog,
+    AppMain:       AppMain,
+    TweetDialog:   TweetDialog,
     RetweetDialog: RetweetDialog,
-    MediaDialog: MediaDialog
+    MediaDialog:   MediaDialog,
+    UserDialog:    UserDialog
   }
 }
 </script>
