@@ -49,7 +49,7 @@ export default {
       }
     },
     getMore: function () {
-      this.displayCount = this.$store.state.Tweet.tweets.length;
+      this.displayCount += 10;
     }
   },
   created () {
