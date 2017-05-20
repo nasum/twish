@@ -28,4 +28,4 @@ export default {
 }
 </script>
 
-<style src="css/photon.css"></style>
+<style src="css/base.scss"></style>
