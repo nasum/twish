@@ -9,10 +9,12 @@
               {{ $store.state.UserDialog.name }}
             </div>
             <div>
-              <span class="icon icon-twitter-circled"></span> 
+              <span class="icon icon-twitter-circled"></span>
               <a href="javascript:void(0)" @click="clickLink($store.state.UserDialog.twitter_url)">
                 @{{ $store.state.UserDialog.screen_name }}
               </a>
+              <button class="btn btn-positive" v-if="!$store.state.UserDialog.following">following</button>
+              <button class="btn btn-negative" v-if="$store.state.UserDialog.following">remove</button>
             </div>
             <div>
               {{ $store.state.UserDialog.description }}
@@ -39,6 +41,12 @@ export default {
         backgroundSize: 'cover',
         backgroundImage: `url(${this.$store.state.UserDialog.profile_banner_url})`
       }
+    },
+    follow: function () {
+      return this.$store.state.UserDialog.following;
+    },
+    notFollow: function () {
+      return !this.$store.state.UserDialog.following;
     }
   },
   methods: {
@@ -71,7 +79,7 @@ a {
 .header-inner {
   background: linear-gradient(to bottom, rgba(211,211,211,0), rgba(0,0,0,1));
   height: 100%;
-  padding: 10px;
+  padding: 5px;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
