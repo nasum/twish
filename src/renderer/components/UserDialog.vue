@@ -13,8 +13,14 @@
               <a href="javascript:void(0)" @click="clickLink($store.state.UserDialog.twitter_url)">
                 @{{ $store.state.UserDialog.screen_name }}
               </a>
-              <button class="btn btn-positive" v-if="!$store.state.UserDialog.following">following</button>
-              <button class="btn btn-negative" v-if="$store.state.UserDialog.following">remove</button>
+              <button class="btn" @click="clickFollow" :class="{ 'btn-positive': !$store.state.UserDialog.following, 'btn-negative': $store.state.UserDialog.following }">
+                <span v-if="$store.state.UserDialog.following">
+                  remove
+                </span>
+                <span v-if="!$store.state.UserDialog.following">
+                  following
+                </span>
+              </button>
             </div>
             <div>
               {{ $store.state.UserDialog.description }}
@@ -55,6 +61,13 @@ export default {
     },
     clickLink: function (url) {
       Shell.openExternal(url);
+    },
+    clickFollow: function () {
+      if (this.$store.state.UserDialog.following) {
+        this.$store.dispatch('remove', this.$store.state.UserDialog);
+      } else {
+        this.$store.dispatch('following', this.$store.state.UserDialog);
+      }
     }
   }
 }
@@ -68,6 +81,12 @@ div {
 a {
   color: #fff;
   cursor: pointer;
+}
+.btn {
+  cursor: pointer;
+  span {
+    cursor: pointer;
+  }
 }
 .user-dialog {
   width: 600px;

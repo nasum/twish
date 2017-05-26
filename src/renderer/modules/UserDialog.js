@@ -12,7 +12,7 @@ const state = {
 };
 
 const mutations = {
-  showUserDialog: (state, user) => {
+  showUserDialog (state, user) {
     state.open = true;
     state.id = user.id_str;
     state.profile_image_url = user.profile_image_url.replace(/normal/, 'bigger');
@@ -24,8 +24,15 @@ const mutations = {
     state.description = user.description;
     state.twitter_url = `https://twitter.com/${state.screen_name}`;
   },
-  closeUserDialog: (state) => {
+  closeUserDialog (state) {
     state.open = false;
+  },
+  changeUserData (state, obj) {
+    if (obj === 'FOLLOWING') {
+      state.following = true;
+    } else if (obj === 'REMOVE') {
+      state.following = false;
+    }
   }
 };
 

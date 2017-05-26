@@ -109,6 +109,35 @@ function _sendRetweet (client, context) {
   });
 }
 
+function _following (client, context, obj) {
+  const options = {
+    screen_name: obj.screen_name,
+    user_id: obj.user_id,
+    follow: false
+  };
+  client.post('friendships/create', options, function (error, tweet, response) {
+    if (error) {
+      throw error;
+    }
+    // TODO sync all timeline
+    context.commit('changeUserData', 'FOLLOWING');
+  });
+}
+
+function _remove (client, context, obj) {
+  const options = {
+    screen_name: obj.screen_name,
+    user_id: obj.user_id
+  };
+  client.post('friendships/destroy', options, function (error, tweet, response) {
+    if (error) {
+      throw error;
+    }
+    // TODO sync all timeline
+    context.commit('changeUserData', 'REMOVE');
+  });
+}
+
 export default {
   initHomeTimeline (context) {
     execute(_initHomeTimeline, context);
@@ -163,5 +192,11 @@ export default {
   },
   closeMediaDialog (context) {
     context.commit('closeMediaDialog');
+  },
+  following (context, obj) {
+    execute(_following, context, obj);
+  },
+  remove (context, obj) {
+    execute(_remove, context, obj);
   }
 };
