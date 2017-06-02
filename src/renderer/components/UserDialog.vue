@@ -13,14 +13,6 @@
               <a href="javascript:void(0)" @click="clickLink($store.state.UserDialog.twitter_url)">
                 @{{ $store.state.UserDialog.screen_name }}
               </a>
-              <button class="btn" @click="clickFollow" :class="{ 'btn-positive': !$store.state.UserDialog.following, 'btn-negative': $store.state.UserDialog.following }">
-                <span v-if="$store.state.UserDialog.following">
-                  remove
-                </span>
-                <span v-if="!$store.state.UserDialog.following">
-                  following
-                </span>
-              </button>
             </div>
             <div>
               {{ $store.state.UserDialog.description }}
@@ -29,6 +21,16 @@
               url: <a href="javascript:void(0)" @click="clickLink($store.state.UserDialog.url)">{{ $store.state.UserDialog.url }}</a>
             </div>
           </div>
+        </div>
+        <div class="action-area">
+          <button class="btn" @click="clickFollow" :class="{ 'btn-positive': !$store.state.UserDialog.following, 'btn-negative': $store.state.UserDialog.following }">
+            <span v-if="$store.state.UserDialog.following">
+              remove
+            </span>
+            <span v-if="!$store.state.UserDialog.following">
+              following
+            </span>
+          </button>
         </div>
       </div>
     </div>
@@ -98,6 +100,9 @@ a {
 .header-inner {
   background: linear-gradient(to bottom, rgba(211,211,211,0), rgba(0,0,0,1));
   height: 100%;
+  padding: 5px;
+}
+.action-area{
   padding: 5px;
 }
 .fade-enter-active, .fade-leave-active {
