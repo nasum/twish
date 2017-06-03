@@ -10,7 +10,9 @@ const state = {
   description: '',
   twitter_url: '',
   statuses_count: 0,
-  favourites_count: 0
+  favourites_count: 0,
+  profile_background_color: '',
+  profile_text_color: ''
 };
 
 const mutations = {
@@ -27,6 +29,8 @@ const mutations = {
     state.twitter_url = `https://twitter.com/${state.screen_name}`;
     state.statuses_count = user.statuses_count;
     state.favourites_count = user.favourites_count;
+    state.profile_background_color = user.profile_background_color;
+    state.profile_text_color = user.profile_text_color;
   },
   closeUserDialog (state) {
     state.open = false;

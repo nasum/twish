@@ -1,8 +1,8 @@
 <template>
   <transition name="fade">
     <div class="grass-pane" v-show="$store.state.UserDialog.open" @click="clickGrassPane">
-      <div class="user-dialog dialog" @click.stop>
-        <div class="user-dialog-header" v-bind:style="styleObject">
+      <div class="user-dialog dialog" v-bind:style="dialogStyleObject" @click.stop>
+        <div class="user-dialog-header" v-bind:style="headerStyleObject">
           <div class="header-inner">
             <img class="img-circle media-object" :src="$store.state.UserDialog.profile_image_url" width="73" height="73">
             <div>
@@ -52,10 +52,16 @@ const Shell = electron.shell;
 export default {
   name: 'UserDailog',
   computed: {
-    styleObject: function () {
+    headerStyleObject: function () {
       return {
         backgroundSize: 'cover',
-        backgroundImage: `url(${this.$store.state.UserDialog.profile_banner_url})`
+        backgroundImage: `url(${this.$store.state.UserDialog.profile_banner_url})`,
+        backgroundColor: `${this.$store.state.UserDialog.profile_background_color}`
+      }
+    },
+    dialogStyleObject: function() {
+      return {
+        color: `${this.$store.state.UserDialog.profile_text_color}`
       }
     },
     follow: function () {

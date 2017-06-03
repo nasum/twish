@@ -10,5 +10,7 @@ export default class User {
     this.description = user.description;
     this.statuses_count = user.statuses_count;
     this.favourites_count = user.favourites_count;
+    this.profile_background_color = user.profile_background_color;
+    this.profile_text_color = user.profile_text_color;
   }
 }
