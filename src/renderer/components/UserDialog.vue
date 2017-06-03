@@ -23,14 +23,22 @@
           </div>
         </div>
         <div class="action-area">
-          <button class="btn" @click="clickFollow" :class="{ 'btn-positive': !$store.state.UserDialog.following, 'btn-negative': $store.state.UserDialog.following }">
-            <span v-if="$store.state.UserDialog.following">
-              remove
-            </span>
-            <span v-if="!$store.state.UserDialog.following">
-              following
-            </span>
-          </button>
+          <div class="action-item">
+            <span>tweets : </span><span>{{ $store.state.UserDialog.statuses_count }}</span>
+          </div>
+          <div class="action-item">
+            <span>fav : </span><span>{{ $store.state.UserDialog.favourites_count }}</span>
+          </div>
+          <div class="action-item">
+            <button class="btn" @click="clickFollow" :class="{ 'btn-positive': !$store.state.UserDialog.following, 'btn-negative': $store.state.UserDialog.following }">
+              <span v-if="$store.state.UserDialog.following">
+                remove
+              </span>
+              <span v-if="!$store.state.UserDialog.following">
+                following
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -102,8 +110,14 @@ a {
   height: 100%;
   padding: 5px;
 }
-.action-area{
+.action-area {
   padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 100%;
+}
+.action-item {
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s

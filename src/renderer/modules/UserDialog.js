@@ -8,7 +8,9 @@ const state = {
   url: '',
   following: false,
   description: '',
-  twitter_url: ''
+  twitter_url: '',
+  statuses_count: 0,
+  favourites_count: 0
 };
 
 const mutations = {
@@ -23,6 +25,8 @@ const mutations = {
     state.following = user.following;
     state.description = user.description;
     state.twitter_url = `https://twitter.com/${state.screen_name}`;
+    state.statuses_count = user.statuses_count;
+    state.favourites_count = user.favourites_count;
   },
   closeUserDialog (state) {
     state.open = false;

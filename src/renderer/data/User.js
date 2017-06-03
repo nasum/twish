@@ -8,5 +8,7 @@ export default class User {
     this.url = user.url;
     this.following = user.following;
     this.description = user.description;
+    this.statuses_count = user.statuses_count;
+    this.favourites_count = user.favourites_count;
   }
 }
