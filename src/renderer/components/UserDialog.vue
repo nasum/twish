@@ -38,6 +38,9 @@
                 following
               </span>
             </button>
+            <button class="btn btn-default" @click="clickList">
+              <span class="icon icon-list"></span>list
+            </button>
           </div>
         </div>
       </div>
@@ -84,6 +87,9 @@ export default {
       } else {
         this.$store.dispatch('following', this.$store.state.UserDialog);
       }
+    },
+    clickList: function () {
+
     }
   }
 }
