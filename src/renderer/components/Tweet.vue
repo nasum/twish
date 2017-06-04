@@ -23,6 +23,7 @@
       <span class="icon icon-reply reaction" @click="reply"></span>
       <span class="icon icon-retweet reaction" @click="retweet"></span>
       <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like"></span>
+      <span class="icon icon-mail"></span>
     </div>
   </div>
 </li>
