@@ -63,7 +63,7 @@ export default {
       const backgroundImageUrl = this.$store.state.UserDialog.profile_banner_url;
       const backgroundColor = this.$store.state.UserDialog.profile_background_color;
 
-      if(backgroundImageUrl) styleObject['backgroundImage'] = backgroundImageUrl;
+      if(backgroundImageUrl) styleObject['backgroundImage'] = `url("${backgroundImageUrl}")`;
       if(backgroundColor) styleObject['backgroundColor'] = backgroundColor;
 
       return styleObject;
