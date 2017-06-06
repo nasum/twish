@@ -56,11 +56,17 @@ export default {
   name: 'UserDailog',
   computed: {
     headerStyleObject: function () {
-      return {
-        backgroundSize: 'cover',
-        backgroundImage: `url(${this.$store.state.UserDialog.profile_banner_url})`,
-        backgroundColor: `${this.$store.state.UserDialog.profile_background_color}`
+      let styleObject = {
+        backgroundSize: 'cover'
       }
+
+      const backgroundImageUrl = this.$store.state.UserDialog.profile_banner_url;
+      const backgroundColor = this.$store.state.UserDialog.profile_background_color;
+
+      if(backgroundImageUrl) styleObject['backgroundImage'] = backgroundImageUrl;
+      if(backgroundColor) styleObject['backgroundColor'] = backgroundColor;
+
+      return styleObject;
     },
     dialogStyleObject: function() {
       return {
