@@ -17,7 +17,9 @@
       </ul>
     </div>
     <div>
-      {{ dateSt }}
+      <a href="javascript:void(0)"  class="tweet-time" @click="jumpOriginTweet">
+        {{ dateSt }}
+      </a>
     </div>
     <div class="action-area">
       <span class="icon icon-reply reaction" @click="reply"></span>
@@ -30,6 +32,9 @@
 </template>
 
 <script>
+import electron from 'electron';
+const Shell = electron.shell;
+
 import TweetText from './TweetText';
 import moment from 'moment';
 import Loading from './Loading';
@@ -94,6 +99,13 @@ export default {
     },
     showRetweetUserDialog: function () {
       this.$store.dispatch('showUserDialog', this.status.getRetweetUser());
+    },
+    jumpOriginTweet: function () {
+      const user = this.status.getUser();
+      console.log(user.screen_name)
+      console.log(this.status.id)
+      const url = `https://twitter.com/${user.screen_name}/status/${this.status.id}`
+      Shell.openExternal(url);
     }
   }
 }
@@ -113,6 +125,12 @@ export default {
 }
 
 .user-thumb {
+  cursor: pointer;
+}
+
+.tweet-time {
+  cursor: pointer;
+  color: #414142;
   cursor: pointer;
 }
 
