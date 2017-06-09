@@ -1,5 +1,5 @@
 <template>
-<li class="list-group-item" >
+<li class="list-group-item" @click='showDetail'>
   <div class="user-content pull-left">
     <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog">
     <div class="retweet-user" v-if="retweetUserData">
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     showDetail: function () {
-
+      this.$store.dispatch('showTweetStatusDialog');
     },
     reply: function () {
       this.$store.dispatch('showTweetDialog', { status: this.status });

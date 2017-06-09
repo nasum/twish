@@ -9,24 +9,27 @@
       <retweet-dialog></retweet-dialog>
       <media-dialog></media-dialog>
       <user-dialog></user-dialog>
+      <tweet-status-dialog></tweet-status-dialog>
     </div>
   </div>
 </template>
 
 <script>
-import AppMain       from './AppMain.vue';
-import TweetDialog   from './TweetDialog';
-import RetweetDialog from './RetweetDialog';
-import MediaDialog   from './MediaDialog';
-import UserDialog    from './UserDialog';
+import AppMain           from './AppMain.vue';
+import TweetDialog       from './TweetDialog';
+import RetweetDialog     from './RetweetDialog';
+import MediaDialog       from './MediaDialog';
+import UserDialog        from './UserDialog';
+import TweetStatusDialog from './TweetStatusDialog'
 
 export default {
   components: {
-    AppMain:       AppMain,
-    TweetDialog:   TweetDialog,
-    RetweetDialog: RetweetDialog,
-    MediaDialog:   MediaDialog,
-    UserDialog:    UserDialog
+    AppMain:           AppMain,
+    TweetDialog:       TweetDialog,
+    RetweetDialog:     RetweetDialog,
+    MediaDialog:       MediaDialog,
+    UserDialog:        UserDialog,
+    TweetStatusDialog: TweetStatusDialog
   }
 }
 </script>

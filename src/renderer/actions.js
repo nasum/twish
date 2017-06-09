@@ -184,6 +184,12 @@ export default {
   closeUserDialog (context) {
     context.commit('closeUserDialog');
   },
+  showTweetStatusDialog (context) {
+    context.commit('showTweetStatusDialog');
+  },
+  closeTweetStatusDialog (context) {
+    context.commit('closeTweetStatusDialog');
+  },
   sendRetweet (context) {
     execute(_sendRetweet, context);
   },

@@ -8,11 +8,13 @@ import Welcome from './components/Welcome';
 import AppRoot from './components/AppRoot';
 
 import actions from './actions';
-import Tweet         from './modules/Tweet';
-import TweetDialog   from './modules/TweetDialog';
-import RetweetDialog from './modules/RetweetDialog';
-import MediaDialog   from './modules/MediaDialog';
-import UserDialog   from './modules/UserDialog';
+
+import Tweet             from './modules/Tweet';
+import TweetDialog       from './modules/TweetDialog';
+import RetweetDialog     from './modules/RetweetDialog';
+import MediaDialog       from './modules/MediaDialog';
+import UserDialog        from './modules/UserDialog';
+import TweetStatusDialog from './modules/TweetStatusDialog';
 
 document.title = __('title');
 
@@ -32,7 +34,8 @@ const store = new Vuex.Store({
     TweetDialog: TweetDialog,
     RetweetDialog: RetweetDialog,
     MediaDialog: MediaDialog,
-    UserDialog: UserDialog
+    UserDialog: UserDialog,
+    TweetStatusDialog: TweetStatusDialog
   }
 });
 
