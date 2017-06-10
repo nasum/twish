@@ -1,9 +1,9 @@
 <template>
 <li class="list-group-item" @click='showDetail'>
   <div class="user-content pull-left">
-    <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog">
+    <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog" @click.stop>
     <div class="retweet-user" v-if="retweetUserData">
-      <img class="img-circle media-object user-thumb" :src="retweetUserData.profile_image_url" width="24" height="24" @click="showRetweetUserDialog"><span class="icon icon-retweet"></span>
+      <img class="img-circle media-object user-thumb" :src="retweetUserData.profile_image_url" width="24" height="24" @click="showRetweetUserDialog" @click.stop><span class="icon icon-retweet"></span>
     </div>
   </div>
   <div class="media-body">
