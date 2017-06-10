@@ -22,10 +22,10 @@
       </a>
     </div>
     <div class="action-area">
-      <span class="icon icon-reply reaction" @click="reply"></span>
-      <span class="icon icon-retweet reaction" @click="retweet"></span>
-      <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like"></span>
-      <span class="icon icon-mail"></span>
+      <span class="icon icon-reply reaction" @click="reply" @click.stop></span>
+      <span class="icon icon-retweet reaction" @click="retweet" @click.stop></span>
+      <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like" @click.stop></span>
+      <span class="icon icon-mail" @click.stop></span>
     </div>
   </div>
 </li>
