@@ -12,7 +12,7 @@
     <div>
       <ul class="media-list">
         <li class="media" v-for="media in mediaList">
-          <img v-bind:src="media.media_thumb" @click="showMediaDialog(media.media_small)">
+          <img v-bind:src="media.media_thumb" @click="showMediaDialog(media.media_small)" @click.stop>
         </li>
       </ul>
     </div>
