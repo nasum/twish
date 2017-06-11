@@ -68,7 +68,8 @@ export default {
   },
   methods: {
     showDetail: function () {
-      this.$store.dispatch('showTweetStatusDialog');
+      const selectedText = window.getSelection().toString();
+      if (selectedText.length == 0) this.$store.dispatch('showTweetStatusDialog');
     },
     reply: function () {
       this.$store.dispatch('showTweetDialog', { status: this.status });
