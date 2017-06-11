@@ -8,7 +8,10 @@ export default {
     return <p>
       { processTextArray.map((text) => {
         if(this.urls.indexOf(text) >= 0) {
-          return <a href="javascript:void(0)" onClick={() => Shell.openExternal(text)}>{text}</a>
+          return <a href="javascript:void(0)" onClick={(e) => {
+            e.stopPropagation();
+            Shell.openExternal(text);
+          }}>{text}</a>
         } else {
           return text
         }
@@ -23,7 +26,7 @@ export default {
     }
   },
   methods: {
-    parseText: function(){
+    parseText: function () {
       let processText = this.text;
       this.urls.forEach(function(url){
         processText = processText.replace(url, `,${url},`)
