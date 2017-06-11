@@ -1,5 +1,5 @@
 <template>
-<li class="list-group-item" @click='showDetail'>
+<div>
   <div class="user-content pull-left">
     <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog" @click.stop>
     <div class="retweet-user" v-if="retweetUserData">
@@ -17,7 +17,7 @@
       </ul>
     </div>
     <div>
-      <a href="javascript:void(0)"  class="tweet-time" @click="jumpOriginTweet">
+      <a href="javascript:void(0)"  class="tweet-time" @click="jumpOriginTweet" @click.stop>
         {{ dateSt }}
       </a>
     </div>
@@ -28,7 +28,7 @@
       <span class="icon icon-mail" @click.stop></span>
     </div>
   </div>
-</li>
+</div>
 </template>
 
 <script>
@@ -67,10 +67,6 @@ export default {
     }
   },
   methods: {
-    showDetail: function () {
-      const selectedText = window.getSelection().toString();
-      if (selectedText.length == 0) this.$store.dispatch('showTweetStatusDialog');
-    },
     reply: function () {
       this.$store.dispatch('showTweetDialog', { status: this.status });
     },
