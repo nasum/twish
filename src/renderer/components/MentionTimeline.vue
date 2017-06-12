@@ -6,7 +6,9 @@
         Mention
       </h5>
     </li>
-    <tweet :status="status" v-for="(status, key) in $store.state.Tweet.mentions" :key="key"></tweet>
+    <li class="list-group-item" v-for="(status, key) in $store.state.Tweet.mentions" :key="key" @click='showDetail'>
+      <tweet :status="status"></tweet>
+    </li>
   </ul>
 </div>
 </template>
@@ -16,6 +18,12 @@ import Tweet from './Tweet';
 export default {
   components: {
     Tweet: Tweet
+  },
+  methods: {
+    showDetail: function () {
+      const selectedText = window.getSelection().toString();
+      if (selectedText.length == 0) this.$store.dispatch('showTweetStatusDialog');
+    }
   },
   created () {
     this.$store.dispatch('initMentionTimeline')
