@@ -2,6 +2,14 @@ import User from './User';
 
 export default class TweetStatus {
   constructor (status) {
+    if (status) {
+      this.initWithStatus(status);
+    } else {
+      this.initEmptyStatus();
+    }
+  }
+
+  initWithStatus (status) {
     this.text = status.text;
     this.id = status.id_str;
     this.created_at = status.created_at;
@@ -10,6 +18,17 @@ export default class TweetStatus {
     this.entities = status.entities;
     this.retweeted_status = status.retweeted_status;
     this.retweet_user = status.retweet_user;
+  }
+
+  initEmptyStatus () {
+    this.text = '';
+    this.id = '';
+    this.created_at = '';
+    this.favorited = false;
+    this.user = {};
+    this.entities = {};
+    this.retweeted_status = {};
+    this.retweet_user = {};
   }
 
   getUser () {
@@ -42,7 +61,7 @@ export default class TweetStatus {
   }
 
   getUrls () {
-    let urls;
+    let urls = [];
     if (this.entities.urls) {
       urls = this.entities.urls.map((value) => {
         return value.url;

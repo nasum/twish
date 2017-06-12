@@ -6,7 +6,7 @@
         Home
       </h5>
     </li>
-    <li class="list-group-item" v-for="(status, key) in sliceTweets" :key="key" @click='showDetail'>
+    <li class="list-group-item" v-for="(status, key) in sliceTweets" :key="key" @click='showDetail(status)'>
       <tweet :status="status"></tweet>
     </li>
     <li class="list-group-item more-area">
@@ -35,9 +35,12 @@ export default {
     }
   },
   methods: {
-    showDetail: function () {
+    showDetail: function (status) {
       const selectedText = window.getSelection().toString();
-      if (selectedText.length == 0) this.$store.dispatch('showTweetStatusDialog');
+      if (selectedText.length == 0) {
+        this.$store.dispatch('setTweetStatusDialog', status);
+        this.$store.dispatch('showTweetStatusDialog');
+      }
     },
     getScrollParam: function (e) {
       scroll = e.target.scrollTop;

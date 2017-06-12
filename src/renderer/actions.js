@@ -184,6 +184,9 @@ export default {
   closeUserDialog (context) {
     context.commit('closeUserDialog');
   },
+  setTweetStatusDialog (context, status) {
+    context.commit('setTweetStatusDialog', status);
+  },
   showTweetStatusDialog (context) {
     context.commit('showTweetStatusDialog');
   },

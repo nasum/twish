@@ -1,13 +1,19 @@
+import TweetStatus from '../data/TweetStatus';
+
 const state = {
-  open: false
+  open: false,
+  status: new TweetStatus()
 };
 
 const mutations = {
-  showTweetStatusDialog (status) {
-    status.open = true;
+  showTweetStatusDialog (state) {
+    state.open = true;
   },
-  closeTweetStatusDialog (status) {
-    status.open = false;
+  closeTweetStatusDialog (state) {
+    state.open = false;
+  },
+  setTweetStatusDialog (state, status) {
+    state.status = status;
   }
 };
 
