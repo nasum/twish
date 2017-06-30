@@ -4,9 +4,9 @@
   "author": "nasum",
   "scripts": {
     "build": "rm -rf build && webpack --color",
-    "build:watch": "rm -rf build && webpack --watch --color",
-    "build:production:mac": "rm -rf build && webpack -p && electron-packager ./build production --out=pack --platform=darwin --arch=x64 --electron-version=1.6.2 --overwrite",
-    "electron": "yarn run build && electron ./build/browser/app.js"
+    "dev": "rm -rf build && webpack --watch --color",
+    "pack_mac": "rm -rf build && webpack -p && electron-packager ./build production --out=pack --platform=darwin --arch=x64 --electron-version=1.6.2 --overwrite",
+    "start": "yarn run build && electron ./build/browser/app.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
