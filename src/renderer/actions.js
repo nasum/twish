@@ -81,22 +81,20 @@ function _sendTweet (client, context) {
 }
 
 function _createLike (client, context, obj) {
+  obj.status.favorited = true;
   client.post('favorites/create', { id: obj.status.id }, function (error, tweet, response) {
     if (error) {
       throw error;
     }
-
-    obj.status.favorited = true;
   });
 }
 
 function _destroyLike (client, context, obj) {
+  obj.status.favorited = false;
   client.post('favorites/destroy', { id: obj.status.id }, function (error, tweet, response) {
     if (error) {
       throw error;
     }
-
-    obj.status.favorited = false;
   });
 }
 

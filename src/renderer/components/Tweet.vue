@@ -24,7 +24,10 @@
     <div class="action-area">
       <span class="icon icon-reply reaction" @click="reply" @click.stop></span>
       <span class="icon icon-retweet reaction" @click="retweet" @click.stop></span>
-      <span class="icon reaction" v-bind:class="{ 'icon-heart': status.favorited, 'icon-heart-empty': !status.favorited }" @click="like" @click.stop></span>
+      <transition name="fav" mode="out-in">
+        <span class="icon icon-heart reaction" @click="like" @click.stop v-if='status.favorited' key='onFav'></span>
+        <span class="icon icon-heart-empty reaction" @click="like" @click.stop v-if='!status.favorited' key='offFav'></span>
+      </transition>
       <span class="icon icon-mail" @click.stop></span>
     </div>
   </div>
@@ -145,5 +148,13 @@ export default {
   .reaction {
     cursor: pointer;
   }
+}
+
+.fav-enter-active, .fav-leave-active {
+  transition: all .3s ease;
+}
+.fav-enter, .fav-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
