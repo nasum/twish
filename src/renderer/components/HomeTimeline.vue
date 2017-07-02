@@ -6,12 +6,12 @@
         Home
       </h5>
     </li>
-    <li class="list-group-item" v-for="(status, key) in sliceTweets" :key="key" @click='showDetail(status)'>
-      <tweet :status="status"></tweet>
-    </li>
-    <li class="list-group-item more-area">
+    <transition-group name="list" tag="div">
+      <tweet :status="status" v-for="status in sliceTweets" :key="status.id" @click='showDetail(status)'></tweet>
+    </transition-group>
+    <div class="list-group-item more-area">
       <button class="btn btn-large btn-primary more-btn" @click="getMore">more</button>
-    </li>
+    </div>
   </ul>
 </div>
 </template>
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     sliceTweets: function(){
-      return this.$store.state.Tweet.tweets.slice(0, this.displayCount);
+      return this.$store.state.Tweet.displayTweets.slice(0, this.displayCount);
     }
   },
   methods: {

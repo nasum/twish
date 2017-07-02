@@ -1,5 +1,5 @@
 <template>
-<div>
+<li class="list-group-item">
   <div class="user-content pull-left">
     <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog" @click.stop>
     <div class="retweet-user" v-if="retweetUserData">
@@ -28,7 +28,7 @@
       <span class="icon icon-mail" @click.stop></span>
     </div>
   </div>
-</div>
+</li>
 </template>
 
 <script>
