@@ -1,5 +1,5 @@
 <template>
-<transition name="fade" v-on:enter="enter">
+<transition name="dialog" v-on:enter="enter">
   <div class="grass-pane" v-show="$store.state.TweetDialog.open" @click="clickGrassPane">
     <div class="tweet-dialog dialog" @click.stop>
       <form class="tweet-form" method="dialog">
@@ -93,10 +93,10 @@ export default {
   justify-content: space-around;
 }
 
-.fade-enter-active, .fade-leave-active {
+.dialog-enter-active, .dialog-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.dialog-enter, .dialog-leave-to {
   opacity: 0
 }
 </style>
