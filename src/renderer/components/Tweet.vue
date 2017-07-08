@@ -1,5 +1,5 @@
 <template>
-<li class="list-group-item">
+<li class="list-group-item" @click='showDetail(status)'>
   <div class="user-content pull-left">
     <img class="img-circle media-object user-thumb" :src="userData.profile_image_url" width="48" height="48" @click="showUserDialog" @click.stop>
     <div class="retweet-user" v-if="retweetUserData">
@@ -106,6 +106,13 @@ export default {
       console.log(this.status.id)
       const url = `https://twitter.com/${user.screen_name}/status/${this.status.id}`
       Shell.openExternal(url);
+    },
+    showDetail: function (status) {
+      const selectedText = window.getSelection().toString();
+      if (selectedText.length == 0) {
+        this.$store.dispatch('setTweetStatusDialog', status);
+        this.$store.dispatch('showTweetStatusDialog');
+      }
     }
   }
 }

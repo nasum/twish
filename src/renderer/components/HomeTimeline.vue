@@ -7,7 +7,7 @@
       </h5>
     </li>
     <transition-group name="list" tag="div">
-      <tweet :status="status" v-for="status in sliceTweets" :key="status.id" @click='showDetail(status)'></tweet>
+      <tweet :status="status" v-for="status in sliceTweets" :key="status.id"></tweet>
     </transition-group>
     <div class="list-group-item more-area">
       <button class="btn btn-large btn-primary more-btn" @click="getMore">more</button>
@@ -35,13 +35,6 @@ export default {
     }
   },
   methods: {
-    showDetail: function (status) {
-      const selectedText = window.getSelection().toString();
-      if (selectedText.length == 0) {
-        this.$store.dispatch('setTweetStatusDialog', status);
-        this.$store.dispatch('showTweetStatusDialog');
-      }
-    },
     getScrollParam: function (e) {
       scroll = e.target.scrollTop;
 
