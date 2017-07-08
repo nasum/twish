@@ -60,6 +60,16 @@ export default class TweetStatus {
     return media;
   }
 
+  getHashTags () {
+    let hashTags;
+    if (this.entities.hashtags) {
+      hashTags = this.entities.hashtags.map((value) => {
+        return `#${value.text}`;
+      });
+    }
+    return hashTags;
+  }
+
   getUrls () {
     let urls = [];
     if (this.entities.urls) {

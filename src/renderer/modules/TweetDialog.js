@@ -1,3 +1,5 @@
+import TweetStatus from '../data/TweetStatus';
+
 const state = {
   open: false,
   message: '',
@@ -7,6 +9,8 @@ const state = {
 
 const mutations = {
   showTweetDialog (state, obj) {
+    const tweet = new TweetStatus(obj.status);
+
     if (state.open) {
       return;
     }
@@ -14,7 +18,7 @@ const mutations = {
     if (obj) {
       state.target_tweet_id = obj.status.id;
       state.target_user_id = obj.status.user.id;
-      state.message = `@${obj.status.user.screen_name} `;
+      state.message = `@${obj.status.user.screen_name} ${tweet.getHashTags().join(' ')}`;
     } else {
       state.target_tweet_id = '';
       state.target_user_id = '';
