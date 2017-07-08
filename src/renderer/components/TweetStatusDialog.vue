@@ -2,19 +2,19 @@
   <transition name="fade">
     <div class="grass-pane" v-show="$store.state.TweetStatusDialog.open" @click="clickGrassPane">
       <div class="tweet-status-dialog dialog" @click.stop>
-        <tweet :status="$store.state.TweetStatusDialog.status"></tweet>
+        <tweet-status :status="$store.state.TweetStatusDialog.status"></tweet-status>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import Tweet from './Tweet';
+import TweetStatus from './TweetStatus';
 
 export default {
   name: 'TweetStatusDialog',
   components: {
-    Tweet: Tweet,
+    TweetStatus: TweetStatus,
   },
   methods: {
     clickGrassPane: function () {
