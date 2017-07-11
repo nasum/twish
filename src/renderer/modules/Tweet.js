@@ -1,3 +1,4 @@
+import twitterClient from '../TwitterClient';
 import TweetStatus from '../data/TweetStatus';
 
 const state = {
@@ -41,6 +42,12 @@ const mutations = {
   }
 };
 
+const actions = {
+  initHomeTimeline (context) {
+    twitterClient(_initHomeTimeline, context);
+  }
+};
+
 function setTweets (target, tweets) {
   tweets.forEach((tweet) => {
     target.push(new TweetStatus(createTweetStatus(tweet)));
@@ -70,7 +77,35 @@ function setMessages (target, messages) {
   });
 }
 
+function _initHomeTimeline (client, context) {
+  let user;
+  const stream = client.stream('user');
+
+  client.get('account/settings', {}, function (error, data, response) {
+    if (!error) {
+      user = data;
+    }
+  });
+
+  client.get('statuses/home_timeline', { count: 100, include_entities: true }, function (error, tweets, response) {
+    if (!error) {
+      context.commit('getHomeTimeline', tweets);
+    }
+  });
+
+  stream.on('data', (tweet) => {
+    if (tweet.in_reply_to_screen_name === user.screen_name) {
+      new Notification(`Reply @${tweet.user.screen_name}`, {
+        body: tweet.text
+      });
+      context.commit('addMention', tweet);
+    }
+    context.commit('addTweet', tweet);
+  });
+}
+
 export default {
   state,
-  mutations
+  mutations,
+  actions
 };

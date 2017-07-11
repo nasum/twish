@@ -1,55 +1,4 @@
-import storage from 'electron-json-storage';
-import Twitter from 'twitter';
-
-let stream;
-
-function execute (func, context, obj) {
-  let client;
-  storage.get('oauthInfo', function (err, data) {
-    if (err) {
-      console.log(err);
-    }
-
-    const accessToken = data.accessToken;
-    const accessTokenSecret = data.accessTokenSecret;
-
-    client = new Twitter({
-      consumer_key: process.env.TWITTER_CONSUMER_KEY,
-      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-      access_token_key: accessToken,
-      access_token_secret: accessTokenSecret
-    });
-    func(client, context, obj);
-  });
-
-  return client;
-}
-
-function _initHomeTimeline (client, context) {
-  let user;
-  client.get('account/settings', {}, function (error, data, response) {
-    if (!error) {
-      user = data;
-    }
-  });
-
-  client.get('statuses/home_timeline', { count: 100, include_entities: true }, function (error, tweets, response) {
-    if (!error) {
-      context.commit('getHomeTimeline', tweets);
-    }
-  });
-
-  stream = client.stream('user');
-  stream.on('data', (tweet) => {
-    if (tweet.in_reply_to_screen_name === user.screen_name) {
-      new Notification(`Reply @${tweet.user.screen_name}`, {
-        body: tweet.text
-      });
-      context.commit('addMention', tweet);
-    }
-    context.commit('addTweet', tweet);
-  });
-}
+import twitterClient from './TwitterClient';
 
 function _initMentionTimeline (client, context) {
   client.get('statuses/mentions_timeline', {}, function (error, tweets, response) {
@@ -137,9 +86,6 @@ function _remove (client, context, obj) {
 }
 
 export default {
-  initHomeTimeline (context) {
-    execute(_initHomeTimeline, context);
-  },
   startTimeline (context) {
     context.commit('startTimeline');
   },
@@ -147,10 +93,10 @@ export default {
     context.commit('stopTimeline');
   },
   initMentionTimeline (context) {
-    execute(_initMentionTimeline, context);
+    twitterClient(_initMentionTimeline, context);
   },
   initDirectMessage (context) {
-    execute(_initDirectMessage, context);
+    twitterClient(_initDirectMessage, context);
   },
   showTweetDialog (context, obj) {
     context.commit('showTweetDialog', obj);
@@ -159,16 +105,16 @@ export default {
     context.commit('closeTweetDialog');
   },
   sendTweet (context) {
-    execute(_sendTweet, context);
+    twitterClient(_sendTweet, context);
   },
   syncMessage (context, obj) {
     context.commit('syncMessage', obj);
   },
   createLike (context, obj) {
-    execute(_createLike, context, obj);
+    twitterClient(_createLike, context, obj);
   },
   destroyLike (context, obj) {
-    execute(_destroyLike, context, obj);
+    twitterClient(_destroyLike, context, obj);
   },
   showRetweetDialog (context, obj) {
     context.commit('showRetweetDialog', obj);
@@ -192,7 +138,7 @@ export default {
     context.commit('closeTweetStatusDialog');
   },
   sendRetweet (context) {
-    execute(_sendRetweet, context);
+    twitterClient(_sendRetweet, context);
   },
   showMediaDialog (context, obj) {
     context.commit('showMediaDialog', obj);
@@ -201,9 +147,9 @@ export default {
     context.commit('closeMediaDialog');
   },
   following (context, obj) {
-    execute(_following, context, obj);
+    twitterClient(_following, context, obj);
   },
   remove (context, obj) {
-    execute(_remove, context, obj);
+    twitterClient(_remove, context, obj);
   }
 };
