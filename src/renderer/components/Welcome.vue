@@ -1,25 +1,23 @@
 <template>
-<div>
-  <div class="window">
-    <header class="toolbar toolbar-header">
-      <h1 class="title">Twish</h1>
-    </header>
-    <div class="window-content">
-      <div class="form-content">
-        <h2>Twish</h2>
-        <form>
-          <div class="form-group">
-            <label>
-              PIN
-            </label>
-            <input type="text" class="form-control" placeholder="ENTER PIN" v-model="pin">
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-form btn-default" @click="showPin">Show PIN</button>
-            <button type="submit" class="btn btn-form btn-primary" @click="enterPin">OK</button>
-          </div>
-        </form>
-      </div>
+<div class="window">
+  <header class="toolbar toolbar-header">
+    <h1 class="title">Twish</h1>
+  </header>
+  <div class="window-content">
+    <div class="form-content">
+      <h2>Twish</h2>
+      <form>
+        <div class="form-group">
+          <label>
+            PIN
+          </label>
+          <input type="text" class="form-control" placeholder="ENTER PIN" v-model="pin">
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-form btn-default" @click="showPin">Show PIN</button>
+          <button type="submit" class="btn btn-form btn-primary" @click="enterPin">OK</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

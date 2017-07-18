@@ -57,7 +57,9 @@ module.exports = {
               use: 'css-loader!sass-loader?indentedSyntax',
               fallback: 'vue-style-loader'
             })
-          }
+          },
+          esModule: true,
+          optimizeSSR: false
         }
       }, {
         test: /\.css$/,

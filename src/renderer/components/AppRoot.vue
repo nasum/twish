@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <div class="window">
-      <header class="toolbar toolbar-header" style="-webkit-app-region: drag;">
-        <h1 class="title"></h1>
-      </header>
-      <app-main></app-main>
-      <tweet-dialog></tweet-dialog>
-      <retweet-dialog></retweet-dialog>
-      <media-dialog></media-dialog>
-      <user-dialog></user-dialog>
-      <tweet-status-dialog></tweet-status-dialog>
-    </div>
-  </div>
+<div class="window">
+  <header class="toolbar toolbar-header" style="-webkit-app-region: drag;">
+    <h1 class="title"></h1>
+  </header>
+  <app-main></app-main>
+  <tweet-dialog></tweet-dialog>
+  <retweet-dialog></retweet-dialog>
+  <media-dialog></media-dialog>
+  <user-dialog></user-dialog>
+  <tweet-status-dialog></tweet-status-dialog>
+</div>
 </template>
 
 <script>
