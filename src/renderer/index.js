@@ -50,7 +50,7 @@ new Vue({
 
 let timer;
 
-window.addEventListener('resize', function (event) {
+window.addEventListener('resize', function () {
   if (timer !== false) {
     clearTimeout(timer);
   }

@@ -91,8 +91,8 @@ function saveOAuth (error, accessToken, accessTokenSecret) {
   }
 }
 
-ipcMain.on('AUTH', (e, args) => {
-  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret, results) => {
+ipcMain.on('AUTH', () => {
+  oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret) => {
     if (error) return;
     const authUrl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthToken}`;
     storage.set('oauthInfo', {
