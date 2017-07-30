@@ -1,7 +1,7 @@
 import twitterClient from './TwitterClient';
 
 function _initMentionTimeline (client, context) {
-  client.get('statuses/mentions_timeline', {}, function (error, tweets, response) {
+  client.get('statuses/mentions_timeline', {}, function (error, tweets) {
     if (!error) {
       context.commit('getMentionTimeline', tweets);
     }
@@ -9,7 +9,7 @@ function _initMentionTimeline (client, context) {
 }
 
 function _initDirectMessage (client, context) {
-  client.get('direct_messages', {}, function (error, messages, response) {
+  client.get('direct_messages', {}, function (error, messages) {
     if (!error) {
       context.commit('getDirectMessage', messages);
     }
@@ -21,7 +21,7 @@ function _sendTweet (client, context) {
     status: context.state.TweetDialog.message,
     in_reply_to_status_id: context.state.TweetDialog.target_tweet_id
   };
-  client.post('statuses/update', tweetParams, function (error, tweet, response) {
+  client.post('statuses/update', tweetParams, function (error) {
     if (error) {
       throw error;
     }
@@ -31,7 +31,7 @@ function _sendTweet (client, context) {
 
 function _createLike (client, context, obj) {
   obj.status.favorited = true;
-  client.post('favorites/create', { id: obj.status.id }, function (error, tweet, response) {
+  client.post('favorites/create', { id: obj.status.id }, function (error) {
     if (error) {
       throw error;
     }
@@ -40,7 +40,7 @@ function _createLike (client, context, obj) {
 
 function _destroyLike (client, context, obj) {
   obj.status.favorited = false;
-  client.post('favorites/destroy', { id: obj.status.id }, function (error, tweet, response) {
+  client.post('favorites/destroy', { id: obj.status.id }, function (error) {
     if (error) {
       throw error;
     }
@@ -48,7 +48,7 @@ function _destroyLike (client, context, obj) {
 }
 
 function _sendRetweet (client, context) {
-  client.post('statuses/retweet/', { id: context.state.RetweetDialog.target_tweet_id }, function (error, tweet, response) {
+  client.post('statuses/retweet/', { id: context.state.RetweetDialog.target_tweet_id }, function (error) {
     if (error) {
       throw error;
     }
@@ -62,7 +62,7 @@ function _following (client, context, obj) {
     user_id: obj.user_id,
     follow: false
   };
-  client.post('friendships/create', options, function (error, tweet, response) {
+  client.post('friendships/create', options, function (error) {
     if (error) {
       throw error;
     }
@@ -76,7 +76,7 @@ function _remove (client, context, obj) {
     screen_name: obj.screen_name,
     user_id: obj.user_id
   };
-  client.post('friendships/destroy', options, function (error, tweet, response) {
+  client.post('friendships/destroy', options, function (error) {
     if (error) {
       throw error;
     }

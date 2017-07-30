@@ -81,13 +81,13 @@ function _initHomeTimeline (client, context) {
   let user;
   const stream = client.stream('user');
 
-  client.get('account/settings', {}, function (error, data, response) {
+  client.get('account/settings', {}, function (error, data) {
     if (!error) {
       user = data;
     }
   });
 
-  client.get('statuses/home_timeline', { count: 100, include_entities: true }, function (error, tweets, response) {
+  client.get('statuses/home_timeline', { count: 100, include_entities: true }, function (error, tweets) {
     if (!error) {
       context.commit('getHomeTimeline', tweets);
     }
